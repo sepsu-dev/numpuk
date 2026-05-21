@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Highlighter } from "./highlighter";
 
@@ -10,15 +11,22 @@ interface SiteHeaderProps {
 export function SiteHeader({ name }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/60 backdrop-blur-xl">
-      <div className="container mx-auto px-4 flex h-20 items-center justify-between">
+      <div className="container mx-auto px-8 md:px-16 lg:px-24 flex h-20 items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 transition-all duration-300 group"
+          className="flex items-center gap-2 transition-all duration-300 group"
         >
-          <div className="flex items-center justify-center w-8 h-8 rounded-full border-[6px] border-primary group-hover:scale-110 transition-all duration-300" />
+          <Image
+            src="/logo.png"
+            alt="Numpuk Logo"
+            width={40}
+            height={40}
+            className="group-hover:scale-110 transition-all duration-300"
+          />
           <span className="text-2xl font-black tracking-tight text-[#121212]">Numpuk</span>
         </Link>
+
 
         {/* Actions */}
         <div className="flex items-center gap-4">

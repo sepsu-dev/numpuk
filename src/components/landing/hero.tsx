@@ -16,10 +16,10 @@ function Users_Avatars() {
 export function Hero() {
     return (
         <section className="relative pt-32 pb-40 overflow-hidden bg-[#FEFEFE]">
-            <div className="container px-4 mx-auto relative z-10">
-                <div className="max-w-4xl mx-auto text-center relative">
+            <div className="container px-8 md:px-16 lg:px-24 mx-auto relative z-10">
+                <div className="max-w-5xl mx-auto text-center relative">
 
-                    {/* Floating 'Panduan Gaya' Card Left */}
+                    {/* Floating 'Asset' Card Left */}
                     <div className="absolute -left-60 top-40 hidden 2xl:block animate-in fade-in slide-in-from-left-20 duration-1000 delay-300 pointer-events-none opacity-40 hover:opacity-100 transition-opacity">
                         <div className="bg-white/80 backdrop-blur-md p-6 rounded-[32px] border border-white shadow-2xl -rotate-6 w-64">
                             <div className="flex justify-between items-center mb-6">
@@ -27,12 +27,12 @@ export function Hero() {
                                     <div className="w-8 h-8 rounded-full bg-orange-400 border-2 border-white shadow-sm" />
                                     <div className="w-8 h-8 rounded-full bg-blue-400 border-2 border-white shadow-sm" />
                                 </div>
-                                <div className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em]">Asset</div>
+                                <div className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em]">Asset Proyek</div>
                             </div>
-                            <h4 className="text-md font-black text-left mb-2">Desain Visual Web</h4>
+                            <h4 className="text-md font-black text-left mb-2">Gaya Visual Brand</h4>
                             <div className="flex items-center gap-3 text-[11px] text-muted-foreground font-extrabold uppercase">
                                 <Users className="w-3.5 h-3.5 text-black" />
-                                <span>5 Aktif</span>
+                                <span>5 Tim Aktif</span>
                             </div>
                         </div>
                     </div>
@@ -41,56 +41,50 @@ export function Hero() {
                     <div className="absolute -right-60 top-24 hidden 2xl:block animate-in fade-in slide-in-from-right-20 duration-1000 delay-500 pointer-events-none opacity-40 hover:opacity-100 transition-opacity">
                         <div className="bg-white/80 backdrop-blur-md p-6 rounded-[32px] border border-white shadow-2xl rotate-3 w-64">
                             <div className="flex justify-between items-center mb-6 text-left">
-                                <div className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em]">Numpuk App</div>
+                                <div className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em]">Update Terakhir</div>
                             </div>
-                            <h4 className="text-md font-black text-left mb-2">Animasi UI</h4>
+                            <h4 className="text-md font-black text-left mb-2">Animasi UI Dashboard</h4>
                             <div className="flex items-center gap-2 mb-4">
                                 <div className="w-5 h-5 rounded-lg bg-primary opacity-20" />
                                 <div className="h-2.5 w-full bg-muted/40 rounded-full overflow-hidden">
                                     <div className="h-full w-2/3 bg-primary" />
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between text-[11px] font-extrabold text-muted-foreground uppercase">
+                            <div className="flex items-center justify-between text-[11px] font-extrabold text-muted-foreground uppercase text-left">
                                 <div className="flex items-center gap-2">
                                     <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
-                                    10 Nov
+                                    Selesai 10 Nov
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <h1 className="text-[54px] md:text-[82px] font-black tracking-tight mb-24 text-[#121212] leading-[1.3] md:leading-[1.25]">
-                        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-12 mb-6">
-                            <span>Kelola</span>
-                            <div className="inline-flex items-center align-middle h-12 md:h-16 px-4 bg-[#F3F4F6] rounded-full border-2 border-[#E5E7EB]"><Users_Avatars /></div>
-                            <span>Tugas</span>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 text-[#121212] leading-[1.1]">
+                        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-8 mb-6">
+                            <span>Kuasai</span>
+                            <div className="inline-flex items-center align-middle h-10 md:h-14 px-3 bg-[#F3F4F6] rounded-full border-2 border-white shadow-lg"><Users_Avatars /></div>
+                            <span>Alur Kerja</span>
                         </div>
-                        <div className="flex flex-wrap items-center justify-center gap-8 mt-6">
-                            <div className="inline-flex items-center gap-3 px-6 py-3 border-[3px] border-black/5 rounded-[24px] bg-white/80 backdrop-blur-xl shadow-2xl -rotate-1">
-                                <div className="w-5 h-5 rounded-full border-2 border-primary" />
-                                <div className="text-left">
-                                    <div className="text-[14px] md:text-[18px] font-black leading-none text-black">Riset Pasar</div>
-                                </div>
+                        <div className="flex flex-wrap items-center justify-center gap-6 mt-4">
+                            <div className="inline-flex items-center gap-3 px-5 py-3 border-[2px] border-black/5 rounded-[24px] bg-white/80 backdrop-blur-xl shadow-xl -rotate-1">
+                                <div className="w-5 h-5 rounded-full border-[2px] border-primary" />
+                                <div className="text-left font-black text-[16px] md:text-[20px] leading-none text-black">Strategi Utama</div>
                             </div>
-                            <span className="text-primary font-black italic bg-primary/5 px-4 py-1 rounded-2xl">Produktivitas</span>
+                            <span className="text-primary font-black italic bg-primary/5 px-4 py-1.5 rounded-2xl border border-primary/10">Tanpa Batas</span>
                         </div>
                     </h1>
 
-                    <p className="text-lg md:text-2xl text-muted-foreground/60 mb-20 max-w-2xl mx-auto leading-relaxed font-bold mt-20 px-4">
-                        Atur proyek pribadi maupun tim, tetap sesuai rencana, dan selesai tepat waktu tanpa stres.
+                    <p className="text-md md:text-xl text-muted-foreground/75 mb-12 max-w-3xl mx-auto leading-relaxed font-bold mt-12">
+                        Transformasi produktivitas Anda. Kelola proyek pribadi hingga kolaborasi tim dalam satu ekosistem yang cerdas, elegan, dan sepenuhnya gratis.
                     </p>
 
                     <div className="flex flex-col items-center gap-6 mb-16">
-                        <button className="px-10 py-5 rounded-full bg-accent text-white font-bold text-xl shadow-lg hover:scale-105 transition-all active:scale-95 flex items-center gap-3">
-                            <div className="w-6 h-6 rounded-full border-2 border-white/40 flex items-center justify-center p-0.5">
-                                <div className="w-full h-full bg-white rounded-full" />
-                            </div>
-                            Coba Sekarang — Gratis!
+                        <button className="px-10 py-5 rounded-full bg-accent text-white font-black text-xl shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95 flex items-center gap-4">
+                            Mulai Perjalanan Anda — Gratis
                         </button>
-                        <div className="flex items-center gap-2 text-[13px] font-bold text-muted-foreground">
+                        <div className="flex items-center gap-2 text-[13px] font-bold text-muted-foreground uppercase tracking-widest">
                             <CheckCircle2 className="w-4 h-4 text-black" />
-                            <span>Sangat Puas 4.9 dari 5</span>
-                            <span className="text-orange-500 font-extrabold ml-1 uppercase text-[10px]">Peringkat</span>
+                            <span>Fitur Premium, Tanpa Biaya Berlangganan</span>
                         </div>
                     </div>
                 </div>
