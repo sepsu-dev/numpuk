@@ -5,10 +5,8 @@ import {
     Shield,
     Layers,
     Users,
-    BarChart3,
-    Infinity
+    BarChart3
 } from "lucide-react";
-import { Highlighter } from "@/components/highlighter";
 
 export function Features() {
     return (

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Highlighter } from "./highlighter";
 
 interface SiteHeaderProps {
   name: string;
@@ -24,7 +23,7 @@ export function SiteHeader({ name }: SiteHeaderProps) {
             height={40}
             className="group-hover:scale-110 transition-all duration-300"
           />
-          <span className="text-2xl font-black tracking-tight text-[#121212]">Numpuk</span>
+          <span className="text-2xl font-black tracking-tight text-[#121212]">{name}</span>
         </Link>
 
 

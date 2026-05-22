@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, Star, Users } from "lucide-react";
-import { Highlighter } from "@/components/highlighter";
+import { CheckCircle2, Users } from "lucide-react";
 
 function Users_Avatars() {
     return (
