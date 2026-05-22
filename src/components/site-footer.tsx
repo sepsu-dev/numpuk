@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Highlighter } from "@/components/highlighter";
+
 
 interface SiteFooterProps {
   author: string;
@@ -7,36 +9,28 @@ interface SiteFooterProps {
 
 export function SiteFooter({ author }: SiteFooterProps) {
   return (
-    <footer className="py-20 bg-[#F9FAFB] border-t border-border/40">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24 text-center">
-        <div className="flex flex-col items-center gap-8">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Numpuk Logo"
-              width={32}
-              height={32}
-            />
-            <span className="text-2xl font-black tracking-tight text-[#121212]">Numpuk</span>
-          </div>
+    <footer className="py-10 bg-white border-t border-black/5">
+      <div className="container max-w-5xl mx-auto px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-3 group relative">
+          <Image src="/logo.png" alt="Numpux Logo" width={24} height={24} />
+          <span className="text-xl font-black tracking-tight text-[#0A0A0A] relative z-10">
+            {author.replace(" Team", "")}
+            <Highlighter variant={1} className="text-primary/15 -bottom-1" />
+          </span>
+        </Link>
 
-          <p className="text-muted-foreground font-medium max-w-sm mx-auto leading-relaxed">
-            Kelola produktivitas pribadi maupun tim tanpa stres. <br /> Didesain untuk para kreator, tersedia gratis selamanya.
-          </p>
 
-          <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
-            <Link href="#" className="text-sm font-bold text-[#121212] hover:text-primary transition-colors uppercase tracking-widest">Twitter</Link>
-            <Link href="#fitur" className="text-sm font-bold text-[#121212] hover:text-primary transition-colors uppercase tracking-widest">Fitur</Link>
-            <Link href="#" className="text-sm font-bold text-[#121212] hover:text-primary transition-colors uppercase tracking-widest">Bantuan</Link>
-            <Link href="#" className="text-sm font-bold text-[#121212] hover:text-primary transition-colors uppercase tracking-widest">Privasi</Link>
-          </nav>
 
-          <div className="h-px w-20 bg-muted/20" />
 
-          <div className="text-[13px] font-bold text-muted-foreground/60 tracking-tight">
-            © {new Date().getFullYear()} {author} — Dibuat dengan penuh semangat di Jakarta.
-          </div>
-        </div>
+        <nav className="flex items-center gap-6">
+          <Link href="#features" className="text-xs font-black text-muted-foreground hover:text-black transition-colors tracking-widest">Fitur</Link>
+          <Link href="#pricing" className="text-xs font-black text-muted-foreground hover:text-black transition-colors tracking-widest">Harga</Link>
+          <Link href="#" className="text-xs font-black text-muted-foreground hover:text-black transition-colors tracking-widest">Privasi</Link>
+        </nav>
+
+        <p className="text-[11px] font-bold text-muted-foreground/50">
+          © {new Date().getFullYear()} {author}
+        </p>
       </div>
     </footer>
   );

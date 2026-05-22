@@ -1,65 +1,101 @@
+import Link from "next/link";
+import { Highlighter } from "@/components/highlighter";
+
 export function VisualShowcase() {
     return (
-        <section className="py-32 bg-white relative overflow-hidden">
-            <div className="container px-8 md:px-16 lg:px-24 mx-auto">
-                <div className="flex flex-col lg:flex-row items-center gap-20">
-                    <div className="flex-1">
-                        <div className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-black mb-8 uppercase tracking-widest">
-                            Fleksibilitas Kerja
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-8 leading-[1.2] tracking-tighter text-[#121212]">
-                            Satu Ekosistem, <br /> <span className="text-accent underline decoration-accent/20 decoration-8 underline-offset-8">Beragam Perspektif.</span>
+        <section className="py-24 bg-white">
+            <div className="container max-w-5xl mx-auto px-8">
+                <div className="flex flex-col lg:flex-row items-center gap-16">
+                    {/* Text */}
+                    <div className="flex-1 text-left">
+                        <span className="inline-block px-4 py-1.5 rounded-md bg-accent/10 text-accent text-[10px] font-black mb-6 uppercase tracking-[0.25em] border border-accent/15">
+                            Workflow
+                        </span>
+
+                        <h2 className="text-[32px] md:text-[44px] font-black tracking-[-0.03em] text-[#0A0A0A] font-heading leading-[1.1] mb-6">
+                            Satu Tempat <br />
+                            <span className="relative inline-block">
+                                <em className="not-italic text-accent">Semua Terkendali.</em>
+                                <Highlighter variant={2} className="text-accent/25" />
+                            </span>
                         </h2>
-                        <p className="text-muted-foreground text-lg md:text-xl font-bold leading-relaxed mb-12">
-                            Sesuaikan tampilan alur kerja dengan kebutuhan spesifik Anda. Beralih antar tampilan secara mulus tanpa mengganggu ritme kerja.
+                        <p className="text-[15px] text-[#6B7280] font-medium leading-[1.7] mb-8 max-w-sm">
+                            Numpux beradaptasi dengan cara kerja tim Anda, bukan sebaliknya. Alihkan perspektif sesuai kebutuhan.
                         </p>
 
-                        <div className="space-y-6">
+                        <ul className="space-y-5">
                             {[
-                                { t: "Manajemen Visual Kanban", d: "Optimal untuk pemantauan alur kerja tim yang dinamis." },
-                                { t: "Daftar Tugas Berbasis Prioritas", d: "Efisiensi tinggi untuk eksekusi tugas harian yang terfokus." },
-                                { t: "Visualisasi Kalender", d: "Perencanaan strategis untuk memantau milestones dan deadline." }
+                                { label: "Visual Kanban", desc: "Pantau alur kerja dengan kejelasan penuh." },
+                                { label: "Priority Engine", desc: "Fokus pada hal yang paling berdampak." },
+                                { label: "Timeline Strategis", desc: "Rencanakan milestone dengan presisi." },
                             ].map((item, i) => (
-                                <div key={i} className="flex gap-4">
-                                    <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
-                                        <div className="w-2 h-2 bg-white rounded-full" />
+                                <li key={i} className="flex items-start gap-4">
+                                    <div className="w-7 h-7 rounded-md bg-[#0A0A0A] text-white flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
+                                        0{i + 1}
                                     </div>
+
                                     <div>
-                                        <h4 className="font-black text-[#121212] mb-1">{item.t}</h4>
-                                        <p className="text-muted-foreground text-sm font-bold">{item.d}</p>
+                                        <p className="text-[14px] font-black text-[#0A0A0A]">{item.label}</p>
+                                        <p className="text-[13px] text-[#6B7280] font-medium">{item.desc}</p>
                                     </div>
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
+
+                        <Link href="/register" className="inline-flex items-center gap-2 mt-10 text-[13px] font-black text-accent hover:underline underline-offset-4">
+                            Coba Sekarang →
+                        </Link>
                     </div>
 
-                    <div className="flex-1 relative">
-                        <div className="relative group">
-                            <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/20 rounded-[40px] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative rounded-[40px] border-[6px] border-black bg-white overflow-hidden shadow-2xl p-6">
-                                <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
-                                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                                    <div className="w-3 h-3 rounded-full bg-orange-400" />
-                                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                                    <div className="ml-4 h-6 w-32 bg-gray-100 rounded-lg animate-pulse" />
+                    {/* Visual */}
+                    <div className="flex-1 w-full relative">
+                        <div className="absolute -top-10 -right-10 w-32 h-32 text-accent/10 rotate-12 pointer-events-none">
+                            <Highlighter variant={3} />
+                        </div>
+                        <div className="rounded-md border-2 border-black/[0.08] bg-[#FAFAFA] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.06)] relative z-10">
+
+                            <div className="mb-4 flex items-center justify-between">
+                                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground">Mei 2026</span>
+                                <div className="flex gap-1">
+                                    <div className="w-5 h-5 rounded-md bg-black/[0.04] flex items-center justify-center text-[10px]">‹</div>
+                                    <div className="w-5 h-5 rounded-md bg-black/[0.04] flex items-center justify-center text-[10px]">›</div>
                                 </div>
-                                {/* Mockup Content */}
-                                <div className="grid grid-cols-3 gap-4 h-64">
-                                    <div className="bg-gray-50 rounded-2xl p-3 border-2 border-dashed border-gray-200">
-                                        <div className="h-4 w-full bg-gray-200 rounded-md mb-2" />
-                                        <div className="h-12 w-full bg-white border border-gray-100 rounded-xl shadow-sm mb-2" />
-                                        <div className="h-12 w-full bg-white border border-gray-100 rounded-xl shadow-sm" />
+                            </div>
+                            <div className="grid grid-cols-7 gap-1 mb-3">
+                                {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                                    <div key={i} className="text-center text-[9px] font-black text-muted-foreground/50 uppercase">{d}</div>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-7 gap-1">
+                                {Array.from({ length: 35 }, (_, i) => {
+                                    const day = i - 3;
+                                    const isToday = day === 22;
+                                    const hasEvent = [5, 12, 19, 25, 28].includes(day);
+                                    if (day < 1 || day > 31) return <div key={i} className="aspect-square" />;
+                                    return (
+                                        <div key={i} className={`aspect-square flex items-center justify-center rounded-md text-[11px] font-bold relative
+                                            ${isToday ? "bg-accent text-white shadow-md" : "hover:bg-black/[0.04] text-[#0A0A0A]"}
+                                        `}>
+                                            {day}
+                                            {hasEvent && !isToday && (
+                                                <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            <div className="mt-4 space-y-2">
+                                {[
+                                    { label: "Kick-off Meeting", time: "9:00", color: "bg-primary/10 text-primary border-primary/20" },
+                                    { label: "Review Design Sprint", time: "14:00", color: "bg-accent/10 text-accent border-accent/20" },
+                                ].map((ev, i) => (
+                                    <div key={i} className={`flex items-center gap-3 px-3 py-2 rounded-md border text-[11px] font-bold ${ev.color}`}>
+
+                                        <span className="opacity-60 shrink-0">{ev.time}</span>
+                                        <span>{ev.label}</span>
                                     </div>
-                                    <div className="bg-gray-50 rounded-2xl p-3 border-2 border-dashed border-gray-200">
-                                        <div className="h-4 w-full bg-gray-200 rounded-md mb-2" />
-                                        <div className="h-12 w-full bg-accent/10 border border-accent/20 rounded-xl shadow-sm" />
-                                    </div>
-                                    <div className="bg-gray-50 rounded-2xl p-3 border-2 border-dashed border-gray-200">
-                                        <div className="h-4 w-full bg-gray-200 rounded-md mb-2" />
-                                        <div className="h-12 w-full bg-white border border-gray-100 rounded-xl shadow-sm mb-2" />
-                                        <div className="h-12 w-full bg-primary/10 border border-primary/20 rounded-xl shadow-sm" />
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>

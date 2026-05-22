@@ -1,55 +1,86 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { User, Mail, Lock } from "lucide-react";
+import { Highlighter } from "@/components/highlighter";
 
 export default function RegisterPage() {
     return (
-        <div className="min-h-screen bg-background flex flex-col justify-center items-center px-4 py-20">
-            <div className="w-full max-w-[400px] animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <div className="text-center mb-8">
-                    <Link href="/" className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent text-white font-black text-2xl shadow-xl mb-6 mx-auto">
-                        N
-                    </Link>
-                    <h1 className="text-3xl font-black tracking-tight">Register</h1>
-                </div>
+        <div className="min-h-screen bg-[#FAFAFA] flex flex-col relative">
 
-                <div className="p-8 rounded-[32px] border border-border bg-card shadow-2xl">
-                    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-black uppercase tracking-wider ml-1 text-muted-foreground">Full Name</label>
-                            <input
-                                type="text"
-                                placeholder="John Doe"
-                                className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium"
-                            />
-                        </div>
 
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-black uppercase tracking-wider ml-1 text-muted-foreground">Email</label>
-                            <input
-                                type="email"
-                                placeholder="name@company.com"
-                                className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium"
-                            />
-                        </div>
+            {/* Grid bg matching landing page */}
+            <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-black uppercase tracking-wider ml-1 text-muted-foreground">Password</label>
-                            <input
-                                type="password"
-                                placeholder="••••••••"
-                                className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium"
-                            />
-                        </div>
+            <div className="flex-1 flex flex-col justify-center items-center px-4 relative z-10 py-12">
+                <div className="w-full max-w-[400px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    {/* Form Header */}
+                    <div className="text-center mb-10">
+                        <h1 className="text-[28px] md:text-[36px] font-black tracking-[-0.03em] text-[#0A0A0A] leading-tight font-heading">
+                            Buat Akun{" "}
+                            <span className="relative inline-block">
+                                <em className="not-italic text-accent">Gratis.</em>
+                                <Highlighter variant={2} className="text-accent/25" />
+                            </span>
+                        </h1>
+                        <p className="text-[13px] text-[#6B7280] font-medium mt-2">Mulai produktivitas Anda hari ini</p>
+                    </div>
 
-                        <button className="w-full py-4 rounded-xl bg-primary text-white font-black text-lg hover:scale-[1.02] shadow-xl shadow-primary/20 transition-all active:scale-95 mt-4">
-                            Create Account
-                        </button>
-                    </form>
-                </div>
+                    {/* Card */}
+                    <div className="bg-white rounded-md border border-black/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.06)] p-8">
+                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                            <div className="space-y-1.5">
+                                <label className="text-[11px] font-black uppercase tracking-[0.2em] text-[#6B7280]">Nama Lengkap</label>
+                                <div className="relative group">
+                                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-accent transition-colors" />
+                                    <input
+                                        type="text"
+                                        placeholder="John Doe"
+                                        className="w-full pl-10 pr-4 py-3 rounded-md border border-black/[0.08] bg-[#FAFAFA] focus:outline-none focus:border-accent/40 focus:bg-white transition-all text-sm font-medium text-[#0A0A0A] placeholder:text-[#D1D5DB]"
+                                    />
+                                </div>
+                            </div>
 
-                <div className="mt-8 text-center text-sm font-bold text-muted-foreground">
-                    Already have an account? <Link href="/login" className="text-primary hover:underline">Log in</Link>
+                            <div className="space-y-1.5">
+                                <label className="text-[11px] font-black uppercase tracking-[0.2em] text-[#6B7280]">Email</label>
+                                <div className="relative group">
+                                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-accent transition-colors" />
+                                    <input
+                                        type="email"
+                                        placeholder="nama@email.com"
+                                        className="w-full pl-10 pr-4 py-3 rounded-md border border-black/[0.08] bg-[#FAFAFA] focus:outline-none focus:border-accent/40 focus:bg-white transition-all text-sm font-medium text-[#0A0A0A] placeholder:text-[#D1D5DB]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <label className="text-[11px] font-black uppercase tracking-[0.2em] text-[#6B7280]">Sandi</label>
+                                <div className="relative group">
+                                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF] group-focus-within:text-accent transition-colors" />
+                                    <input
+                                        type="password"
+                                        placeholder="••••••••"
+                                        className="w-full pl-10 pr-4 py-3 rounded-md border border-black/[0.08] bg-[#FAFAFA] focus:outline-none focus:border-accent/40 focus:bg-white transition-all text-sm font-medium text-[#0A0A0A]"
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full py-3.5 rounded-md bg-accent text-white font-black text-[14px] hover:bg-[#0A0A0A] transition-colors shadow-[3px_3px_0_0_rgba(168,85,247,0.2)] hover:shadow-none active:scale-[0.98] mt-2"
+                            >
+                                Buat Akun Sekarang
+                            </button>
+                        </form>
+                    </div>
+
+                    <p className="mt-7 text-center text-[13px] font-medium text-[#6B7280]">
+                        Sudah punya akun?{" "}
+                        <Link href="/login" className="font-black text-primary hover:underline underline-offset-4">
+                            Masuk Saja
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>

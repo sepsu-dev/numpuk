@@ -1,85 +1,94 @@
 "use client";
 
 import {
-    Zap,
-    Shield,
     Layers,
     Users,
-    BarChart3
+    BarChart3,
+    Zap
 } from "lucide-react";
+import { Highlighter } from "@/components/highlighter";
+
+const features = [
+    {
+        title: "Kanban Board",
+        desc: "Visualisasi alur kerja yang intuitif dengan drag-and-drop, status kustom, dan filter cepat.",
+        icon: Layers,
+        color: "text-primary",
+        bg: "bg-primary/5"
+    },
+    {
+        title: "Strategic Calendar",
+        desc: "Sinkronisasi deadline dan milestone dalam satu tampilan kalender yang komprehensif.",
+        icon: BarChart3,
+        color: "text-accent",
+        bg: "bg-accent/5"
+    },
+    {
+        title: "Team Collaboration",
+        desc: "Assign tugas, komentar, dan pantau progres bersama tim di mana saja secara real-time.",
+        icon: Users,
+        color: "text-primary",
+        bg: "bg-primary/5"
+    },
+    {
+        title: "Smart Reminders",
+        desc: "Notifikasi proaktif yang memastikan tidak ada satu pun deadline yang terlewat.",
+        icon: Zap,
+        color: "text-accent",
+        bg: "bg-accent/5"
+    },
+];
 
 export function Features() {
     return (
-        <section id="features" className="py-40 bg-[#F9FAFB] relative overflow-hidden">
-            <div className="container px-8 md:px-16 lg:px-24 mx-auto relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-24">
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-black mb-6 uppercase tracking-widest">
-                        Ekosistem Fitur
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-black mb-8 leading-[1.2] tracking-tighter text-[#121212]">
-                        Instrumen Lengkap untuk <br className="hidden md:block" /> <span className="text-primary italic">Produktivitas Maksimal.</span>
+        <section id="features" className="py-24 bg-[#F9FAFB] relative overflow-hidden">
+            <div className="absolute -top-10 -left-10 w-64 h-64 text-primary/5 rotate-[-15deg] pointer-events-none">
+                <Highlighter variant={1} />
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 text-accent/5 rotate-[15deg] pointer-events-none">
+                <Highlighter variant={3} />
+            </div>
+
+            <div className="container max-w-5xl mx-auto px-8 relative z-10">
+                {/* Header */}
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                    <span className="inline-block px-4 py-1.5 rounded-md bg-primary/10 text-primary text-[10px] font-black mb-5 uppercase tracking-[0.25em] border border-primary/15">
+                        Capabilities
+                    </span>
+                    <h2 className="text-[32px] md:text-[48px] font-black tracking-[-0.03em] text-[#0A0A0A] font-heading leading-[1.1] mb-5">
+                        Semua yang{" "}
+                        <span className="relative inline-block">
+                            Anda Butuhkan.
+                            <Highlighter variant={3} className="text-primary/20" />
+                        </span>
                     </h2>
-                    <p className="text-muted-foreground text-lg md:text-xl font-bold leading-relaxed">
-                        Numpuk menyatukan instrumen kelas dunia dalam satu antarmuka yang intuitif. Dirancang khusus untuk mendukung ritme kerja yang dinamis dan terstruktur.
+                    <p className="text-[15px] text-[#6B7280] font-medium leading-[1.7] max-w-md mx-auto">
+                        Satu platform. Semua instrumen produktivitas kelas dunia yang Anda butuhkan.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[
-                        {
-                            title: "Visual Kanban",
-                            desc: "Pantau progres proyek secara visual dengan sistem drag-and-drop yang sangat responsif.",
-                            icon: Layers,
-                            color: "text-primary",
-                            bg: "bg-primary/10"
-                        },
-                        {
-                            title: "Agenda Terintegrasi",
-                            desc: "Sinkronkan jadwal dan tenggat waktu dalam satu tampilan kalender yang presisi.",
-                            icon: BarChart3,
-                            color: "text-accent",
-                            bg: "bg-accent/10"
-                        },
-                        {
-                            title: "Daftar Tugas Mikro",
-                            desc: "Urai kompleksitas proyek dengan sistem sub-tugas dan daftar periksa yang terorganisir.",
-                            icon: Zap,
-                            color: "text-primary",
-                            bg: "bg-primary/10"
-                        },
-                        {
-                            title: "Sinergi Kolaborasi",
-                            desc: "Berbagi proyek dan komunikasikan tugas secara real-time antar anggota tim tanpa hambatan.",
-                            icon: Users,
-                            color: "text-accent",
-                            bg: "bg-accent/10"
-                        },
-                        {
-                            title: "Notifikasi Proaktif",
-                            desc: "Sistem pengingat cerdas yang menjaga fokus Anda tetap pada prioritas utama.",
-                            icon: Zap,
-                            color: "text-primary",
-                            bg: "bg-primary/10"
-                        },
-                        {
-                            title: "Penyimpanan Aset",
-                            desc: "Kelola dokumen dan lampiran penting secara aman di dalam setiap kartu tugas.",
-                            icon: Shield,
-                            color: "text-accent",
-                            bg: "bg-accent/10"
-                        },
-                    ].map((feature, idx) => (
+                {/* Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="p-8 rounded-[32px] border-2 border-transparent bg-white hover:border-black shadow-lg hover:shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-all duration-500 group"
+                            className="p-8 rounded-md border border-black/[0.06] bg-white hover:border-black/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group flex items-start gap-5 relative overflow-hidden"
                         >
-                            <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform shadow-sm`}>
-                                <feature.icon className={`w-7 h-7 ${feature.color}`} />
+                            {/* Decorative Scribble */}
+                            <div className="absolute -top-4 -right-4 w-12 h-12 text-primary/5 group-hover:scale-150 transition-transform">
+                                <Highlighter variant={idx % 3 + 1 as 1 | 2 | 3} />
                             </div>
-                            <h3 className="text-xl font-black mb-3 text-[#121212] tracking-tight">{feature.title}</h3>
-                            <p className="text-sm md:text-base text-muted-foreground font-bold leading-relaxed">
-                                {feature.desc}
-                            </p>
+
+                            <div className={`w-11 h-11 shrink-0 rounded-md ${feature.bg} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                                <feature.icon className={`w-5 h-5 ${feature.color}`} />
+                            </div>
+                            <div>
+                                <h3 className="text-[16px] font-black mb-1.5 text-[#0A0A0A] tracking-tight relative inline-block">
+                                    {feature.title}
+                                    <Highlighter variant={(idx % 3 + 1) as 1 | 2 | 3} className="opacity-0 group-hover:opacity-100 transition-opacity text-primary/10" />
+                                </h3>
+                                <p className="text-[13px] text-[#6B7280] font-medium leading-[1.6]">{feature.desc}</p>
+                            </div>
                         </div>
                     ))}
                 </div>

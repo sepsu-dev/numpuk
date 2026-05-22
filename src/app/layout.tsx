@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit, Bricolage_Grotesque } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
@@ -9,13 +9,23 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
 });
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+});
+
 export function generateMetadata(): Metadata {
   return {
     title: {
-      default: "Numpuk — Kelola Tugas Tanpa Beban",
-      template: `%s — Numpuk`,
+      default: "Numpux",
+      template: `%s — Numpux`,
     },
-    description: "Aplikasi task management gratis yang membantu Anda menyusun tugas lebih rapi dan produktif.",
+    description: "Numpux",
   };
 }
 
@@ -25,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable}`} data-scroll-behavior="smooth">
+    <html lang="id" className={`${plusJakartaSans.variable} ${outfit.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <body className="antialiased font-sans min-h-screen bg-background text-foreground">
         <NextTopLoader showSpinner={false} color="#6366f1" />
         {children}

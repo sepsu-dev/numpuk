@@ -8,11 +8,11 @@ export default function LandingLayout({
 }) {
     return (
         <div className="flex flex-col min-h-screen">
-            <SiteHeader name="Numpuk" />
+            <SiteHeader name="Numpux" />
             <main className="flex-1">
                 {children}
             </main>
-            <SiteFooter author="Numpuk Team" />
+            <SiteFooter author="Numpux Team" />
         </div>
     );
 }
