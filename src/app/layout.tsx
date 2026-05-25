@@ -29,6 +29,8 @@ export function generateMetadata(): Metadata {
   };
 }
 
+import { TooltipProvider } from "@/components/ui/tooltip";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,7 +40,9 @@ export default function RootLayout({
     <html lang="id" className={`${plusJakartaSans.variable} ${outfit.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <body className="antialiased font-sans min-h-screen bg-background text-foreground">
         <NextTopLoader showSpinner={false} color="#6366f1" />
-        {children}
+        <TooltipProvider>
+          {children}
+        </TooltipProvider>
         <Toaster position="top-center" richColors />
       </body>
     </html>

@@ -2,14 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
 import { Highlighter } from "@/components/highlighter";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LoginPage() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!email || !password) {
+            toast.error("Mohon isi semua bidang");
+            return;
+        }
+
+        setIsLoading(true);
+
+        // Dummy login simulation
+        setTimeout(() => {
+            if (email === "admin@numpux.com" && password === "admin123") {
+                toast.success("Berhasil masuk! Mengalihkan...");
+                router.push("/dashboard");
+            } else {
+                toast.error("Email atau kata sandi salah. Gunakan admin@numpux.com / admin123");
+                setIsLoading(false);
+            }
+        }, 1500);
+    };
+
     return (
         <div className="min-h-screen bg-[#FAFAFA] flex flex-col relative">
-
-
             {/* Grid bg matching landing page */}
             <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
@@ -29,7 +57,7 @@ export default function LoginPage() {
 
                     {/* Card */}
                     <div className="bg-white rounded-sm border border-black/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.06)] p-8">
-                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-5" onSubmit={handleLogin}>
                             <div className="space-y-1.5">
                                 <label className="text-[11px] font-black uppercase tracking-[0.2em] text-[#6B7280]">Email</label>
                                 <div className="relative group">
@@ -37,6 +65,8 @@ export default function LoginPage() {
                                     <input
                                         type="email"
                                         placeholder="nama@email.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className="w-full pl-10 pr-4 py-3 rounded-sm border border-black/[0.08] bg-[#FAFAFA] focus:outline-none focus:border-accent/40 focus:bg-white transition-all text-sm font-medium text-[#0A0A0A] placeholder:text-[#D1D5DB]"
                                     />
                                 </div>
@@ -52,6 +82,8 @@ export default function LoginPage() {
                                     <input
                                         type="password"
                                         placeholder="••••••••"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         className="w-full pl-10 pr-4 py-3 rounded-sm border border-black/[0.08] bg-[#FAFAFA] focus:outline-none focus:border-accent/40 focus:bg-white transition-all text-sm font-medium text-[#0A0A0A]"
                                     />
                                 </div>
@@ -59,9 +91,17 @@ export default function LoginPage() {
 
                             <button
                                 type="submit"
-                                className="w-full py-3.5 rounded-sm bg-[#0A0A0A] text-white font-black text-[14px] hover:bg-accent transition-colors shadow-[3px_3px_0_0_rgba(168,85,247,0.2)] hover:shadow-none active:scale-[0.98] mt-2"
+                                disabled={isLoading}
+                                className="w-full py-3.5 rounded-sm bg-[#0A0A0A] text-white font-black text-[14px] hover:bg-accent transition-colors shadow-[3px_3px_0_0_rgba(168,85,247,0.2)] hover:shadow-none active:scale-[0.98] mt-2 flex items-center justify-center gap-2 disabled:opacity-70"
                             >
-                                Masuk
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                        Memproses...
+                                    </>
+                                ) : (
+                                    "Masuk"
+                                )}
                             </button>
                         </form>
                     </div>
