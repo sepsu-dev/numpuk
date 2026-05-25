@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import { toast } from "sonner";
 import {
     LayoutDashboard,
@@ -75,9 +76,13 @@ export default function DashboardLayout({
                 <Sidebar collapsible="icon" className="border-r border-black/[0.08] bg-white">
                     <SidebarHeader className="p-4 h-20 flex items-center justify-center border-b border-black/[0.08]">
                         <Link href="/dashboard" className="flex items-center gap-3 group px-2">
-                            <div className="w-9 h-9 rounded-sm bg-[#0A0A0A] flex-shrink-0 flex items-center justify-center text-white font-black text-base shadow-[3px_3px_0_0_rgba(168,85,247,0.3)] group-hover:shadow-none transition-all">
-                                N
-                            </div>
+                            <Image
+                                src="/logo.png"
+                                alt="Numpux Logo"
+                                width={32}
+                                height={32}
+                                className="group-hover:scale-110 transition-transform duration-300"
+                            />
                             <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                                 <span className="font-black text-lg tracking-tighter text-[#0A0A0A] leading-none">Numpux</span>
                             </div>
@@ -97,14 +102,15 @@ export default function DashboardLayout({
                                             isActive={pathname === item.href}
                                             tooltip={item.label}
                                             className={cn(
-                                                "h-10 px-4 transition-all duration-200",
+                                                "h-10 px-4 rounded-sm transition-all duration-200 group/menu-button border border-transparent",
+                                                "group-data-[collapsible=icon]:!h-9 group-data-[collapsible=icon]:!w-9 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center",
                                                 pathname === item.href
-                                                    ? "bg-[#0A0A0A] text-white hover:bg-[#0A0A0A] hover:text-white"
-                                                    : "text-[#6B7280] hover:bg-[#FAFAFA] hover:text-[#0A0A0A]"
+                                                    ? "bg-[#0A0A0A] text-white shadow-sm"
+                                                    : "text-[#6B7280] hover:bg-white hover:text-[#0A0A0A] hover:border-black/[0.08] hover:shadow-sm"
                                             )}
                                         >
-                                            <Link href={item.href} className="flex items-center w-full">
-                                                <item.icon size={18} className={cn(pathname === item.href ? "text-accent" : "text-[#9CA3AF]")} />
+                                            <Link href={item.href} className="flex items-center w-full group-data-[collapsible=icon]:justify-center">
+                                                <item.icon size={20} className={cn("transition-colors", pathname === item.href ? "text-purple-400" : "text-[#9CA3AF] group-hover/menu-button:text-[#0A0A0A]")} />
                                                 <span className="ml-3 font-bold group-data-[collapsible=icon]:hidden">{item.label}</span>
                                                 {item.count && (
                                                     <span className={cn(
@@ -133,14 +139,15 @@ export default function DashboardLayout({
                                             isActive={pathname === item.href}
                                             tooltip={item.label}
                                             className={cn(
-                                                "h-10 px-4 transition-all duration-200",
+                                                "h-10 px-4 rounded-sm transition-all duration-200 group/menu-button border border-transparent",
+                                                "group-data-[collapsible=icon]:!h-9 group-data-[collapsible=icon]:!w-9 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center",
                                                 pathname === item.href
-                                                    ? "bg-[#0A0A0A] text-white hover:bg-[#0A0A0A] hover:text-white"
-                                                    : "text-[#6B7280] hover:bg-[#FAFAFA] hover:text-[#0A0A0A]"
+                                                    ? "bg-[#0A0A0A] text-white shadow-sm"
+                                                    : "text-[#6B7280] hover:bg-white hover:text-[#0A0A0A] hover:border-black/[0.08] hover:shadow-sm"
                                             )}
                                         >
-                                            <Link href={item.href} className="flex items-center w-full">
-                                                <item.icon size={18} className={cn(pathname === item.href ? "text-accent" : "text-[#9CA3AF]")} />
+                                            <Link href={item.href} className="flex items-center w-full group-data-[collapsible=icon]:justify-center">
+                                                <item.icon size={20} className={cn("transition-colors", pathname === item.href ? "text-purple-400" : "text-[#9CA3AF] group-hover/menu-button:text-[#0A0A0A]")} />
                                                 <span className="ml-3 font-bold group-data-[collapsible=icon]:hidden">{item.label}</span>
                                                 {item.count && (
                                                     <span className={cn(
@@ -162,14 +169,23 @@ export default function DashboardLayout({
                         <div className="flex flex-col gap-2">
                             <SidebarMenu>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton asChild tooltip="Pengaturan" className={cn("h-12 px-3 rounded-sm", pathname === "/dashboard/settings" ? "bg-[#FAFAFA]" : "hover:bg-[#FAFAFA]")}>
+                                    <SidebarMenuButton
+                                        asChild
+                                        tooltip="Pengaturan"
+                                        className={cn(
+                                            "h-12 px-3 rounded-sm border border-transparent transition-all duration-200",
+                                            pathname === "/dashboard/settings"
+                                                ? "bg-white border-black/[0.08] shadow-sm"
+                                                : "hover:bg-white hover:border-black/[0.08] hover:shadow-sm"
+                                        )}
+                                    >
                                         <Link href="/dashboard/settings" className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-sm bg-[#E5E7EB] border border-black/[0.08] flex items-center justify-center text-[10px] font-black text-[#6B7280] flex-shrink-0">
+                                            <div className="w-9 h-9 rounded-sm bg-[#F3F4F6] border border-black/[0.08] flex items-center justify-center text-[10px] font-black text-[#0A0A0A] flex-shrink-0 shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]">
                                                 AD
                                             </div>
                                             <div className="flex-1 min-w-0 group-data-[collapsible=icon]:hidden">
                                                 <p className="text-xs font-black text-[#0A0A0A] truncate">Administrator</p>
-                                                <p className="text-[10px] font-medium text-[#6B7280] truncate">admin@numpux.com</p>
+                                                <p className="text-[10px] font-bold text-[#6B7280] truncate">admin@numpux.com</p>
                                             </div>
                                             <Settings size={14} className="text-[#9CA3AF] group-data-[collapsible=icon]:hidden" />
                                         </Link>
@@ -178,10 +194,10 @@ export default function DashboardLayout({
                             </SidebarMenu>
                             <button
                                 onClick={handleLogout}
-                                className="w-full flex items-center gap-3 px-3 py-3 text-[11px] font-black text-red-500 hover:bg-red-50 rounded-sm transition-colors group-data-[collapsible=icon]:justify-center"
+                                className="w-full flex items-center gap-3 px-3 py-2 text-[11px] font-black text-red-500 bg-transparent hover:bg-red-50 border border-transparent hover:border-red-500/10 rounded-sm transition-all group-data-[collapsible=icon]:justify-center"
                             >
                                 <LogOut size={16} />
-                                <span className="group-data-[collapsible=icon]:hidden">Keluar</span>
+                                <span className="group-data-[collapsible=icon]:hidden uppercase tracking-wider">Keluar</span>
                             </button>
                         </div>
                     </SidebarFooter>
@@ -191,7 +207,7 @@ export default function DashboardLayout({
                     {/* Top Nav / Header */}
                     <header className="h-20 border-b border-black/[0.08] bg-white/80 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-20">
                         <div className="flex items-center gap-4 flex-1">
-                            <SidebarTrigger className="text-[#0A0A0A]" />
+                            <SidebarTrigger className="text-[#0A0A0A] hover:bg-white hover:border-black/[0.08] border border-transparent transition-all hover:shadow-sm active:scale-90" />
                             <div className="h-6 w-[1px] bg-black/[0.08]"></div>
                             <div className="flex items-center gap-2 text-xs font-bold text-[#9CA3AF]">
                                 <span>Workspace</span>
@@ -233,7 +249,10 @@ export default function DashboardLayout({
 
 function IconButton({ icon, label, className, dot }: { icon: React.ReactNode, label?: string, className?: string, dot?: boolean }) {
     return (
-        <button className={cn("flex items-center gap-2 px-4 py-2.5 rounded-sm border border-black/[0.08] transition-all relative font-sans focus:outline-none", className || 'bg-white hover:bg-[#FAFAFA]')}>
+        <button className={cn(
+            "flex items-center gap-2 px-4 py-2.5 rounded-sm border border-black/[0.08] transition-all relative font-sans focus:outline-none active:scale-95",
+            className || 'bg-white hover:bg-white hover:shadow-sm hover:border-black/[0.1]'
+        )}>
             {icon}
             {label && <span className="text-[10px] font-black tracking-tight uppercase">{label}</span>}
             {dot && <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>}

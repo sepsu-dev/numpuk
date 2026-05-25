@@ -40,7 +40,7 @@ export default function NewTaskPage() {
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center gap-6">
-                <Link href="/dashboard/tasks" className="p-3 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] bg-white active:shadow-none">
+                <Link href="/dashboard/tasks" className="p-3 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border border-black/[0.1] shadow-sm bg-white active:scale-95">
                     <ArrowLeft size={20} />
                 </Link>
                 <div>
@@ -49,7 +49,7 @@ export default function NewTaskPage() {
                 </div>
             </div>
 
-            <div className="bg-white border-2 border-black rounded-sm p-10 shadow-[10px_10px_0_0_rgba(0,0,0,1)] max-w-4xl">
+            <div className="bg-white border border-black/[0.08] rounded-sm p-10 shadow-sm max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="space-y-8">
                         <div className="grid gap-3">
@@ -69,7 +69,7 @@ export default function NewTaskPage() {
                                     <DropdownMenuTrigger asChild>
                                         <button
                                             type="button"
-                                            className="h-14 w-full flex items-center justify-between rounded-sm border-2 border-black px-6 bg-white hover:border-accent transition-all text-[#0A0A0A] font-bold shadow-[4px_4px_0_0_rgba(0,0,0,0.05)]"
+                                            className="h-14 w-full flex items-center justify-between rounded-sm border border-black/[0.1] px-6 bg-white hover:border-accent transition-all text-[#0A0A0A] font-bold shadow-sm"
                                         >
                                             <div className="flex items-center gap-3">
                                                 <Briefcase size={16} className={selectedProject === "Pilih Proyek" ? "text-[#9CA3AF]" : "text-accent"} />
@@ -112,7 +112,7 @@ export default function NewTaskPage() {
                                 ].map((p) => (
                                     <label key={p.id} className="cursor-pointer group">
                                         <input type="radio" name="priority" className="sr-only peer" defaultChecked={p.id === 'Medium'} />
-                                        <div className="flex items-center justify-center p-4 text-[10px] font-black uppercase border-2 border-black rounded-sm peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white transition-all group-hover:bg-[#FAFAFA] shadow-[3px_3px_0_0_rgba(0,0,0,0.1)] peer-checked:shadow-none">
+                                        <div className="flex items-center justify-center p-4 text-[10px] font-black uppercase border border-black/[0.1] rounded-sm peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white transition-all hover:bg-[#FAFAFA] shadow-sm peer-checked:shadow-none">
                                             {p.label}
                                         </div>
                                     </label>

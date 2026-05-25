@@ -58,8 +58,8 @@ export default function TasksPage() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <div className="bg-white border-2 border-black p-1 rounded-sm flex">
-                        <button className="p-2.5 bg-[#0A0A0A] text-white rounded-sm">
+                    <div className="bg-white border border-black/[0.08] p-1 rounded-sm flex">
+                        <button className="p-2.5 bg-[#0A0A0A] text-white rounded-sm shadow-sm transition-all">
                             <List size={18} />
                         </button>
                         <Link href="/dashboard/tasks/kanban">
@@ -69,7 +69,7 @@ export default function TasksPage() {
                         </Link>
                     </div>
                     <Link href="/dashboard/tasks/new">
-                        <button className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm border-2 border-black text-sm font-black hover:bg-accent transition-all shadow-[6px_6px_0_0_rgba(168,85,247,0.3)] hover:shadow-none">
+                        <button className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm text-sm font-black hover:bg-accent transition-all shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] active:scale-95">
                             <Plus size={18} />
                             Tugas Baru
                         </button>
@@ -84,10 +84,10 @@ export default function TasksPage() {
                     <input
                         type="text"
                         placeholder="Cari tugas..."
-                        className="w-full pl-12 pr-6 py-3.5 bg-white border-2 border-black rounded-sm text-sm focus:outline-none focus:border-accent shadow-[4px_4px_0_0_rgba(0,0,0,0.05)] transition-all"
+                        className="w-full pl-12 pr-6 py-3.5 bg-white border border-black/[0.1] rounded-sm text-sm focus:outline-none focus:border-accent shadow-sm transition-all"
                     />
                 </div>
-                <button className="flex items-center gap-2 px-6 py-3.5 bg-white border-2 border-black rounded-sm text-xs font-black text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all shadow-[4px_4px_0_0_rgba(0,0,0,0.05)]">
+                <button className="flex items-center gap-2 px-6 py-3.5 bg-white border border-black/[0.1] rounded-sm text-xs font-black text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all shadow-sm">
                     <Filter size={16} />
                     Filter Status
                 </button>
@@ -96,9 +96,9 @@ export default function TasksPage() {
             {/* List Tugas */}
             <div className="grid grid-cols-1 gap-6">
                 {tasks.map((task) => (
-                    <div key={task.id} className="bg-white border-2 border-black p-6 md:p-8 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:shadow-[8px_8px_0_0_rgba(168,85,247,0.1)] transition-all">
+                    <div key={task.id} className="bg-white border border-black/[0.08] p-6 md:p-8 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:border-accent hover:shadow-md transition-all">
                         <div className="flex items-center gap-6">
-                            <div className="w-10 h-10 rounded-sm border-2 border-black flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all cursor-pointer">
+                            <div className="w-10 h-10 rounded-sm border border-black/[0.1] flex items-center justify-center group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all cursor-pointer">
                                 <CheckCircle2 size={18} />
                             </div>
                             <div className="space-y-1.5">
@@ -110,8 +110,8 @@ export default function TasksPage() {
                                         <Clock size={12} />
                                         {task.date}
                                     </div>
-                                    <span className={`px-3 py-1 rounded-sm border border-black text-[9px] font-black uppercase ${task.priority === 'Mendesak' ? 'bg-red-500 text-white' :
-                                            task.priority === 'Tinggi' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F3F4F6] text-[#0A0A0A]'
+                                    <span className={`px-3 py-1 rounded-sm border border-black/[0.05] text-[9px] font-black uppercase ${task.priority === 'Mendesak' ? 'bg-red-500 text-white' :
+                                        task.priority === 'Tinggi' ? 'bg-[#0A0A0A] text-white' : 'bg-[#F3F4F6] text-[#0A0A0A]'
                                         }`}>
                                         {task.priority}
                                     </span>
@@ -123,17 +123,17 @@ export default function TasksPage() {
                             <div className="flex flex-col items-end md:items-end">
                                 <span className="text-[9px] font-black text-[#9CA3AF] uppercase tracking-widest leading-none mb-1">Status</span>
                                 <span className={`text-[11px] font-black ${task.status === 'Selesai' ? 'text-emerald-500' :
-                                        task.status === 'Proses' ? 'text-blue-500' : 'text-[#0A0A0A]'
+                                    task.status === 'Proses' ? 'text-blue-500' : 'text-[#0A0A0A]'
                                     }`}>{task.status}</span>
                             </div>
 
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <button className="p-3 bg-white rounded-sm text-[#0A0A0A] hover:bg-accent hover:text-white border-2 border-black transition-all shadow-[2px_2px_0_0_rgba(0,0,0,1)] hover:shadow-none">
+                                    <button className="p-3 bg-white rounded-sm text-[#0A0A0A] hover:bg-[#FAFAFA] border border-black/[0.1] transition-all shadow-sm">
                                         <MoreHorizontal size={20} />
                                     </button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="rounded-sm border-2 border-black font-sans font-bold shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+                                <DropdownMenuContent align="end" className="rounded-sm border border-black/[0.08] font-sans font-bold shadow-lg">
                                     <DropdownMenuItem asChild>
                                         <Link href={`/dashboard/tasks/edit/${task.id}`} className="cursor-pointer">
                                             <Edit size={14} className="mr-2" /> Ubah
@@ -154,9 +154,9 @@ export default function TasksPage() {
 
             {/* Dialog Hapus */}
             <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-                <DialogContent className="rounded-sm border-2 border-black p-10 font-sans shadow-[15px_15px_0_0_rgba(0,0,0,1)]">
+                <DialogContent className="rounded-sm border border-black/[0.1] p-10 font-sans shadow-2xl">
                     <DialogHeader className="space-y-4">
-                        <div className="w-16 h-16 rounded-sm border-2 border-black bg-red-50 flex items-center justify-center text-red-500 mb-2">
+                        <div className="w-16 h-16 rounded-sm border border-red-500/20 bg-red-50 flex items-center justify-center text-red-500 mb-2">
                             <Trash2 size={32} />
                         </div>
                         <DialogTitle className="text-2xl font-black text-[#0A0A0A] tracking-tighter">Hapus Tugas?</DialogTitle>
@@ -165,8 +165,8 @@ export default function TasksPage() {
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-10 flex gap-4">
-                        <Button variant="outline" className="font-bold text-[#6B7280] flex-1 h-12 rounded-sm border-2 border-black" onClick={() => setIsDeleteDialogOpen(false)}>Batal</Button>
-                        <Button className="bg-red-500 hover:bg-red-600 text-white font-black flex-1 h-12 rounded-sm border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]" onClick={handleDelete}>Hapus Sekarang</Button>
+                        <Button variant="outline" className="font-bold text-[#6B7280] flex-1 h-12 rounded-sm border border-black/[0.1]" onClick={() => setIsDeleteDialogOpen(false)}>Batal</Button>
+                        <Button className="bg-red-500 hover:bg-red-600 text-white font-black flex-1 h-12 rounded-sm shadow-sm" onClick={handleDelete}>Hapus Sekarang</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

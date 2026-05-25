@@ -37,7 +37,7 @@ export default function AnalyticsPage() {
                     </div>
                 </div>
 
-                <div className="bg-[#0A0A0A] text-white p-8 rounded-sm shadow-xl flex flex-col justify-between relative overflow-hidden">
+                <div className="bg-[#0A0A0A] text-white p-8 rounded-sm shadow-sm flex flex-col justify-between relative overflow-hidden">
                     <div className="absolute right-0 top-0 p-10 opacity-10">
                         <TrendingUp size={150} />
                     </div>

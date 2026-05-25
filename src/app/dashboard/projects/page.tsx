@@ -54,7 +54,7 @@ export default function ProjectsPage() {
                 </div>
 
                 <Link href="/dashboard/projects/new">
-                    <button className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm border-2 border-black text-sm font-black hover:bg-accent transition-all shadow-[6px_6px_0_0_rgba(168,85,247,0.3)] hover:shadow-none">
+                    <button className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm text-sm font-black hover:bg-accent transition-all shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] active:scale-95">
                         <Plus size={18} />
                         Proyek Baru
                     </button>
@@ -66,20 +66,20 @@ export default function ProjectsPage() {
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className="bg-white border-2 border-black p-10 rounded-sm shadow-[8px_8px_0_0_rgba(0,0,0,1)] group hover:shadow-[8px_8px_0_0_rgba(168,85,247,0.2)] transition-all flex flex-col justify-between min-h-[340px]"
+                        className="bg-white border border-black/[0.08] p-10 rounded-sm shadow-sm group hover:border-accent hover:shadow-md transition-all flex flex-col justify-between min-h-[340px]"
                     >
                         <div className="space-y-8">
                             <div className="flex justify-between items-start">
-                                <div className="w-14 h-14 rounded-sm bg-[#0A0A0A] border-2 border-black flex items-center justify-center text-white shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] group-hover:scale-105 transition-transform">
+                                <div className="w-14 h-14 rounded-sm bg-[#0A0A0A] border border-black flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
                                     <Briefcase size={24} />
                                 </div>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                        <button className="p-3 bg-white border-2 border-black rounded-sm text-[#0A0A0A] hover:bg-accent hover:text-white shadow-[2px_2px_0_0_rgba(0,0,0,1)] hover:shadow-none transition-all">
+                                        <button className="p-3 bg-white border border-black/[0.1] rounded-sm text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all shadow-sm">
                                             <MoreHorizontal size={20} />
                                         </button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" className="rounded-sm border-2 border-black font-sans font-bold shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+                                    <DropdownMenuContent align="end" className="rounded-sm border border-black/[0.08] font-sans font-bold shadow-lg">
                                         <DropdownMenuItem asChild>
                                             <Link href={`/dashboard/projects/edit/${project.id}`} className="cursor-pointer">
                                                 <Edit size={14} className="mr-2" /> Ubah
@@ -113,9 +113,9 @@ export default function ProjectsPage() {
                                 <span className="text-[10px] font-black text-[#0A0A0A] uppercase tracking-widest">{project.tasks} Tugas</span>
                                 <span className="text-xs font-black">{project.progress}%</span>
                             </div>
-                            <div className="h-3 bg-[#F3F4F6] rounded-sm border border-black overflow-hidden p-0.5">
+                            <div className="h-3 bg-[#F3F4F6] rounded-full border border-black/[0.05] overflow-hidden p-0.5">
                                 <div
-                                    className="h-full bg-[#0A0A0A] group-hover:bg-accent rounded-sm transition-all duration-1000"
+                                    className="h-full bg-[#0A0A0A] group-hover:bg-accent rounded-full transition-all duration-1000"
                                     style={{ width: `${project.progress}%` }}
                                 />
                             </div>
@@ -125,8 +125,8 @@ export default function ProjectsPage() {
 
                 {/* Tambah Proyek */}
                 <Link href="/dashboard/projects/new" className="group h-full">
-                    <div className="h-full min-h-[340px] border-2 border-dashed border-black/[0.2] rounded-sm flex flex-col items-center justify-center gap-4 hover:border-accent hover:bg-accent/[0.02] transition-all group-hover:shadow-[8px_8px_0_0_rgba(168,85,247,0.05)]">
-                        <div className="w-16 h-16 rounded-sm border-2 border-black bg-white flex items-center justify-center text-[#0A0A0A] group-hover:text-accent transition-all shadow-[4px_4px_0_0_rgba(0,0,0,1)] group-hover:shadow-none">
+                    <div className="h-full min-h-[340px] border border-dashed border-black/[0.1] rounded-sm flex flex-col items-center justify-center gap-4 hover:border-accent hover:bg-accent/[0.02] transition-all hover:shadow-sm">
+                        <div className="w-16 h-16 rounded-sm border border-black/[0.1] bg-white flex items-center justify-center text-[#9CA3AF] group-hover:text-accent group-hover:border-accent transition-all shadow-sm">
                             <Plus size={32} />
                         </div>
                         <div className="text-center">
@@ -139,9 +139,9 @@ export default function ProjectsPage() {
 
             {/* Dialog Hapus */}
             <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-                <DialogContent className="rounded-sm border-2 border-black p-12 font-sans shadow-[20px_20px_0_0_rgba(0,0,0,1)]">
+                <DialogContent className="rounded-sm border border-black/[0.1] p-12 font-sans shadow-2xl max-w-lg">
                     <DialogHeader className="space-y-4">
-                        <div className="w-20 h-20 rounded-sm border-2 border-black bg-red-50 flex items-center justify-center text-red-500 mb-2">
+                        <div className="w-20 h-20 rounded-sm border border-red-500/20 bg-red-50 flex items-center justify-center text-red-500 mb-2">
                             <Trash2 size={40} />
                         </div>
                         <DialogTitle className="text-3xl font-black text-[#0A0A0A] tracking-tighter leading-tight">Hapus Proyek?</DialogTitle>
@@ -150,8 +150,8 @@ export default function ProjectsPage() {
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-12 flex gap-4">
-                        <Button variant="outline" className="font-bold text-[#6B7280] flex-1 h-14 rounded-sm border-2 border-black" onClick={() => setIsDeleteDialogOpen(false)}>Batal</Button>
-                        <Button className="bg-red-500 hover:bg-red-600 text-white font-black flex-1 h-14 rounded-sm border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)]" onClick={handleDelete}>Ya, Hapus</Button>
+                        <Button variant="outline" className="font-bold text-[#6B7280] flex-1 h-14 rounded-sm border border-black/[0.1]" onClick={() => setIsDeleteDialogOpen(false)}>Batal</Button>
+                        <Button className="bg-red-500 hover:bg-red-600 text-white font-black flex-1 h-14 rounded-sm shadow-sm" onClick={handleDelete}>Ya, Hapus</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

@@ -44,9 +44,9 @@ export default function SettingsPage() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`w-full flex items-center gap-4 px-6 py-4 rounded-sm text-sm font-black transition-all border-2 ${activeTab === tab.id
-                                    ? "bg-[#0A0A0A] text-white border-black shadow-[4px_4px_0_0_rgba(168,85,247,0.3)]"
-                                    : "text-[#6B7280] border-transparent hover:border-black/[0.1] hover:bg-[#FAFAFA]"
+                            className={`w-full flex items-center gap-4 px-6 py-4 rounded-sm text-sm font-black transition-all border ${activeTab === tab.id
+                                ? "bg-[#0A0A0A] text-white border-black shadow-sm"
+                                : "text-[#6B7280] border-transparent hover:border-black/[0.1] hover:bg-[#FAFAFA]"
                                 }`}
                         >
                             <tab.icon size={18} />
@@ -56,7 +56,7 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Konten Utama */}
-                <div className="xl:col-span-3 bg-white border-2 border-black rounded-sm p-10 shadow-[10px_10px_0_0_rgba(0,0,0,1)]">
+                <div className="xl:col-span-3 bg-white border border-black/[0.08] rounded-sm p-10 shadow-sm">
                     {activeTab === 'profile' && (
                         <form onSubmit={handleSave} className="space-y-10">
                             <div className="flex flex-col md:flex-row md:items-center gap-10">
@@ -64,7 +64,7 @@ export default function SettingsPage() {
                                     <div className="w-32 h-32 rounded-sm bg-[#FAFAFA] border-2 border-dashed border-black/[0.2] flex items-center justify-center text-[#9CA3AF] group-hover:border-accent transition-all overflow-hidden shadow-inner">
                                         <User size={56} className="group-hover:scale-110 transition-transform duration-500" />
                                     </div>
-                                    <button type="button" className="absolute -bottom-2 -right-2 bg-[#0A0A0A] text-white p-3 rounded-sm border-2 border-white shadow-lg hover:bg-accent transition-all">
+                                    <button type="button" className="absolute -bottom-2 -right-2 bg-[#0A0A0A] text-white p-3 rounded-sm border border-white shadow-md hover:bg-accent transition-all">
                                         <Camera size={16} />
                                     </button>
                                 </div>
@@ -81,9 +81,9 @@ export default function SettingsPage() {
                                 <FormInput label="Bio" id="bio" placeholder="Deskripsi singkat diri Anda..." />
                             </div>
 
-                            <div className="pt-10 border-t-2 border-black/5 flex flex-col md:flex-row justify-end gap-4">
-                                <Button type="button" variant="outline" className="font-bold text-[#0A0A0A] border-2 border-black h-14 px-8 rounded-sm hover:bg-[#FAFAFA]">Batal</Button>
-                                <Button type="submit" className="bg-[#0A0A0A] hover:bg-accent font-black rounded-sm border-2 border-black shadow-[6px_6px_0_0_rgba(168,85,247,0.3)] hover:shadow-none transition-all px-12 h-14 text-white">
+                            <div className="pt-10 border-t border-black/[0.05] flex flex-col md:flex-row justify-end gap-4">
+                                <Button type="button" variant="outline" className="font-bold text-[#6B7280] border border-black/[0.1] h-14 px-8 rounded-sm hover:bg-[#FAFAFA]">Batal</Button>
+                                <Button type="submit" className="bg-[#0A0A0A] hover:bg-accent font-black rounded-sm shadow-sm transition-all px-12 h-14 text-white">
                                     Simpan Perubahan
                                 </Button>
                             </div>
@@ -92,7 +92,7 @@ export default function SettingsPage() {
 
                     {activeTab !== 'profile' && (
                         <div className="h-[400px] flex flex-col items-center justify-center text-center space-y-6">
-                            <div className="w-24 h-24 rounded-sm bg-[#FAFAFA] border-2 border-black flex items-center justify-center text-accent shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+                            <div className="w-24 h-24 rounded-sm bg-[#FAFAFA] border border-black/[0.1] flex items-center justify-center text-accent shadow-sm">
                                 <AppWindow size={40} />
                             </div>
                             <div className="space-y-2">
@@ -120,7 +120,7 @@ function FormInput({ label, id, value, placeholder }: { label: string, id: strin
                 id={id}
                 defaultValue={value}
                 placeholder={placeholder}
-                className="rounded-sm border-2 border-black focus:border-accent h-14 bg-white transition-all pl-6 font-bold text-[#0A0A0A] shadow-[3px_3px_0_0_rgba(0,0,0,0.05)]"
+                className="rounded-sm border border-black/[0.1] focus:border-accent h-14 bg-white transition-all pl-6 font-bold text-[#0A0A0A] shadow-sm"
             />
         </div>
     );

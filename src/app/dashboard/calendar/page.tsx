@@ -38,7 +38,7 @@ export default function CalendarPage() {
                 </div>
                 <button
                     onClick={handleAddEvent}
-                    className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm border-2 border-black text-sm font-black hover:bg-accent transition-all shadow-[6px_6px_0_0_rgba(168,85,247,0.3)] hover:shadow-none"
+                    className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm text-sm font-black hover:bg-accent transition-all shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] active:scale-95"
                 >
                     <Plus size={18} />
                     Tambah Agenda
@@ -47,20 +47,20 @@ export default function CalendarPage() {
 
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
                 {/* Kalender Grid */}
-                <div className="xl:col-span-2 bg-white border-2 border-black rounded-sm p-8 shadow-[8px_8px_0_0_rgba(0,0,0,1)] relative overflow-hidden">
-                    <div className="flex items-center justify-between mb-8 pb-6 border-b-2 border-black/5">
+                <div className="xl:col-span-2 bg-white border border-black/[0.08] rounded-sm p-8 shadow-sm relative overflow-hidden">
+                    <div className="flex items-center justify-between mb-8 pb-6 border-b border-black/[0.05]">
                         <h3 className="text-2xl font-black text-[#0A0A0A] tracking-tighter">{month}</h3>
                         <div className="flex gap-4">
-                            <button className="p-3 bg-white border-2 border-black rounded-sm text-[#0A0A0A] hover:bg-accent hover:text-white transition-all shadow-[2px_2px_0_0_rgba(0,0,0,1)] hover:shadow-none">
+                            <button className="p-3 bg-white border border-black/[0.08] rounded-sm text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all shadow-sm">
                                 <ChevronLeft size={20} />
                             </button>
-                            <button className="p-3 bg-[#0A0A0A] text-white rounded-sm border-2 border-black shadow-[2px_2px_0_0_rgba(168,85,247,0.3)] hover:shadow-none transition-all">
+                            <button className="p-3 bg-[#0A0A0A] text-white rounded-sm border border-transparent shadow-[3px_3px_0_0_rgba(168,85,247,0.3)] hover:bg-accent transition-all">
                                 <ChevronRight size={20} />
                             </button>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-7 gap-px bg-black border-2 border-black rounded-sm overflow-hidden">
+                    <div className="grid grid-cols-7 gap-px bg-black/[0.05] border border-black/[0.08] rounded-sm overflow-hidden">
                         {days.map((day) => (
                             <div key={day} className="py-4 text-center bg-[#FAFAFA] border-b border-black/10">
                                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#0A0A0A]">{day}</span>
@@ -74,17 +74,17 @@ export default function CalendarPage() {
 
                             return (
                                 <div key={i} className={`h-24 md:h-32 p-3 bg-white transition-all relative group hover:bg-accent/[0.02] cursor-pointer`}>
-                                    <span className={`text-sm font-black w-8 h-8 flex items-center justify-center rounded-sm transition-all border-2 ${isToday
-                                            ? 'bg-accent text-white border-black shadow-[3px_3px_0_0_rgba(0,0,0,1)] scale-110 z-10'
-                                            : 'border-transparent text-[#6B7280] group-hover:text-[#0A0A0A]'
+                                    <span className={`text-sm font-black w-8 h-8 flex items-center justify-center rounded-sm transition-all border ${isToday
+                                        ? 'bg-accent text-white border-accent shadow-sm scale-110 z-10'
+                                        : 'border-transparent text-[#6B7280] group-hover:text-[#0A0A0A]'
                                         }`}>
                                         {dayNum}
                                     </span>
 
                                     {hasEvent && (
-                                        <div className={`mt-2 p-1.5 rounded-sm border-2 text-[8px] font-black uppercase tracking-tight truncate shadow-[2px_2px_0_0_rgba(0,0,0,1)] ${hasEvent.type === 'critical'
-                                                ? 'border-black bg-red-500 text-white'
-                                                : 'border-black bg-accent text-white'
+                                        <div className={`mt-2 p-1.5 rounded-sm border border-black/[0.05] text-[8px] font-black uppercase tracking-tight truncate shadow-sm ${hasEvent.type === 'critical'
+                                            ? 'bg-red-500 text-white'
+                                            : 'bg-accent text-white'
                                             }`}>
                                             {hasEvent.title}
                                         </div>
@@ -97,7 +97,7 @@ export default function CalendarPage() {
 
                 {/* Panel Agenda Harian */}
                 <div className="space-y-8">
-                    <div className="bg-[#0A0A0A] text-white p-10 rounded-sm border-2 border-black shadow-[8px_8px_0_0_rgba(168,85,247,0.2)] h-full flex flex-col">
+                    <div className="bg-[#0A0A0A] text-white p-10 rounded-sm shadow-[4px_4px_0_0_rgba(168,85,247,0.2)] h-full flex flex-col">
                         <div className="flex items-center gap-3 mb-10">
                             <div className="w-10 h-10 rounded-sm bg-accent/20 border border-accent/40 flex items-center justify-center">
                                 <Bell size={20} className="text-accent" />
@@ -122,8 +122,8 @@ export default function CalendarPage() {
                             />
                         </div>
 
-                        <div className="pt-10 mt-auto border-t border-white/10">
-                            <div className="bg-white/5 p-6 rounded-sm border-2 border-white/10 space-y-3">
+                        <div className="pt-10 mt-auto border-t border-white/5">
+                            <div className="bg-white/5 p-6 rounded-sm border border-white/10 space-y-3">
                                 <div className="flex items-center gap-2">
                                     <Target size={14} className="text-accent" />
                                     <span className="text-[10px] font-black uppercase tracking-widest text-[#9CA3AF]">Target Utama</span>
@@ -140,7 +140,7 @@ export default function CalendarPage() {
 
 function AgendaItem({ title, time, info, icon, accentColor }: { title: string, time: string, info: string, icon: any, accentColor: string }) {
     return (
-        <div className={`p-6 border-2 border-white/10 rounded-sm bg-white/5 space-y-3 border-l-4 ${accentColor} hover:bg-white/10 transition-all shadow-[4px_4px_0_0_rgba(0,0,0,0.1)]`}>
+        <div className={`p-6 border border-white/10 rounded-sm bg-white/5 space-y-3 border-l-4 ${accentColor} hover:bg-white/10 transition-all shadow-sm`}>
             <div className="flex items-center justify-between">
                 <span className="text-[10px] font-black text-[#9CA3AF] uppercase tracking-widest">{time}</span>
                 {icon}

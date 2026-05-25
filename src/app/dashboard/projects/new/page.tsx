@@ -28,7 +28,7 @@ export default function NewProjectPage() {
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center gap-6">
-                <Link href="/dashboard/projects" className="p-3 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] bg-white active:shadow-none">
+                <Link href="/dashboard/projects" className="p-3 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border border-black/[0.1] shadow-sm bg-white active:scale-95">
                     <ArrowLeft size={20} />
                 </Link>
                 <div>
@@ -37,7 +37,7 @@ export default function NewProjectPage() {
                 </div>
             </div>
 
-            <div className="bg-white border-2 border-black rounded-sm p-10 shadow-[10px_10px_0_0_rgba(0,0,0,1)] max-w-4xl">
+            <div className="bg-white border border-black/[0.08] rounded-sm p-10 shadow-sm max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="space-y-8">
                         <div className="grid gap-3">
