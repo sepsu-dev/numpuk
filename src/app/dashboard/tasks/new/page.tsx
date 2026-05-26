@@ -40,31 +40,31 @@ export default function NewTaskPage() {
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center gap-6">
-                <Link href="/dashboard/tasks" className="p-3 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border border-black/[0.1] shadow-sm bg-white active:scale-95">
-                    <ArrowLeft size={20} />
+                <Link href="/dashboard/tasks" className="p-2 hover:bg-[#FAFAFA] rounded-sm text-[#0A0A0A] transition-all border border-black/[0.1] bg-white active:scale-95 shadow-sm">
+                    <ArrowLeft size={16} />
                 </Link>
                 <div>
                     <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Tambah Tugas</h2>
-                    <p className="text-[#6B7280] font-medium mt-1">Buat detail rencana kerja Anda di sini.</p>
+                    <p className="text-[#9CA3AF] text-sm font-medium mt-1">Buat detail rencana kerja Anda.</p>
                 </div>
             </div>
 
-            <div className="bg-white border border-black/[0.08] rounded-sm p-10 shadow-sm max-w-4xl">
+            <div className="bg-white border border-black/[0.04] rounded-sm p-10 shadow-sm hover:shadow-md hover:border-accent/20 transition-all max-w-4xl">
                 <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="space-y-8">
                         <div className="grid gap-3">
-                            <Label htmlFor="title" className="font-black text-[11px] uppercase tracking-[0.25em] text-[#9CA3AF] px-1">Nama Tugas</Label>
+                            <Label htmlFor="title" className="font-black text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A] px-1">Nama Tugas</Label>
                             <Input
                                 id="title"
                                 placeholder="Misal: Update Dashboard"
-                                className="h-14 text-base rounded-sm border-2 border-black focus:border-accent font-bold px-6 bg-white transition-all text-[#0A0A0A] shadow-[4px_4px_0_0_rgba(0,0,0,0.05)]"
+                                className="h-14 text-base rounded-sm border border-black/[0.1] focus:border-accent font-bold px-6 bg-white transition-all text-[#0A0A0A] shadow-sm"
                                 required
                             />
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div className="grid gap-3">
-                                <Label className="font-black text-[11px] uppercase tracking-[0.25em] text-[#9CA3AF] px-1">Pilih Proyek</Label>
+                                <Label className="font-black text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A] px-1">Pilih Proyek</Label>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <button
@@ -72,17 +72,17 @@ export default function NewTaskPage() {
                                             className="h-14 w-full flex items-center justify-between rounded-sm border border-black/[0.1] px-6 bg-white hover:border-accent transition-all text-[#0A0A0A] font-bold shadow-sm"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <Briefcase size={16} className={selectedProject === "Pilih Proyek" ? "text-[#9CA3AF]" : "text-accent"} />
+                                                <Briefcase size={16} className={selectedProject === "Pilih Proyek" ? "text-[#E5E7EB]" : "text-accent"} />
                                                 <span className={selectedProject === "Pilih Proyek" ? "text-[#9CA3AF]" : "text-[#0A0A0A]"}>{selectedProject}</span>
                                             </div>
-                                            <ChevronDown size={16} className="text-[#9CA3AF]" />
+                                            <ChevronDown size={14} className="text-[#9CA3AF] opacity-50" />
                                         </button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="start" className="w-[300px] md:w-[400px] rounded-sm border-2 border-black p-2 font-sans font-bold shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+                                    <DropdownMenuContent align="start" className="w-[300px] md:w-[400px] rounded-sm border border-black/[0.04] p-2 font-sans font-bold shadow-xl">
                                         {projects.map((project) => (
                                             <DropdownMenuItem
                                                 key={project}
-                                                className="h-12 rounded-sm cursor-pointer hover:bg-accent hover:text-white transition-colors pl-4"
+                                                className="h-12 rounded-sm cursor-pointer hover:bg-slate-50 transition-colors pl-4 text-xs"
                                                 onClick={() => setSelectedProject(project)}
                                             >
                                                 {project}
@@ -92,11 +92,11 @@ export default function NewTaskPage() {
                                 </DropdownMenu>
                             </div>
                             <div className="grid gap-3">
-                                <Label htmlFor="date" className="font-black text-[11px] uppercase tracking-[0.25em] text-[#9CA3AF] px-1">Tenggat Waktu</Label>
+                                <Label htmlFor="date" className="font-black text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A] px-1">Tenggat Waktu</Label>
                                 <Input
                                     id="date"
                                     type="date"
-                                    className="h-14 rounded-sm border-2 border-black focus:border-accent font-bold px-6 bg-white transition-all text-[#0A0A0A] shadow-[4px_4px_0_0_rgba(0,0,0,0.05)]"
+                                    className="h-14 rounded-sm border border-black/[0.1] focus:border-accent font-bold px-6 bg-white transition-all text-[#0A0A0A] shadow-sm"
                                 />
                             </div>
                         </div>
@@ -125,14 +125,14 @@ export default function NewTaskPage() {
                             <Textarea
                                 id="description"
                                 placeholder="Tulis catatan atau detail tugas..."
-                                className="min-h-[160px] rounded-sm border-2 border-black focus:border-accent resize-none p-6 font-medium text-base bg-white transition-all text-[#0A0A0A] shadow-[4px_4px_0_0_rgba(0,0,0,0.05)]"
+                                className="min-h-[160px] rounded-sm border border-black/[0.1] focus:border-accent resize-none p-6 font-medium text-base bg-white transition-all text-[#1F2937] shadow-sm focus:shadow-md"
                             />
                         </div>
                     </div>
 
-                    <div className="pt-10 border-t-2 border-black/5 flex items-center justify-end gap-6">
-                        <Button type="button" variant="outline" onClick={() => router.back()} className="font-bold text-[#0A0A0A] border-2 border-black h-14 px-8 rounded-sm">Batal</Button>
-                        <Button type="submit" className="bg-[#0A0A0A] hover:bg-accent text-white font-black px-12 h-14 rounded-sm border-2 border-black shadow-[6px_6px_0_0_rgba(168,85,247,0.3)] hover:shadow-none transition-all">
+                    <div className="pt-10 border-t border-black/5 flex items-center justify-end gap-6">
+                        <Button type="button" variant="outline" onClick={() => router.back()} className="font-bold text-[#6B7280] border border-black/[0.1] h-14 px-8 rounded-sm hover:bg-slate-50 transition-all">Batal</Button>
+                        <Button type="submit" className="bg-accent/90 hover:bg-accent text-white font-black px-12 h-14 rounded-sm shadow-sm active:scale-95 transition-all">
                             Simpan Tugas
                         </Button>
                     </div>

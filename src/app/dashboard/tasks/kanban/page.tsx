@@ -8,7 +8,8 @@ import {
     LayoutGrid,
     List,
     Clock,
-    AlertCircle
+    AlertCircle,
+    Briefcase
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -109,27 +110,27 @@ export default function KanbanPage() {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-8 pb-8">
                 <div>
-                    <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Kanban Board</h2>
-                    <p className="text-[#6B7280] font-medium mt-1">Kelola workflow tugas Anda secara visual.</p>
+                    <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Kanban</h2>
+                    <p className="text-[#9CA3AF] text-sm font-medium mt-1">Kelola workflow visual Anda.</p>
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <div className="bg-[#FAFAFA] border border-black/[0.08] p-1 rounded-sm flex">
+                    <div className="bg-slate-50 p-1 rounded-sm flex border border-black/[0.04]">
                         <Link href="/dashboard/tasks">
                             <button className="p-2 text-[#9CA3AF] hover:text-[#0A0A0A] transition-colors rounded-sm">
-                                <List size={18} />
+                                <List size={16} />
                             </button>
                         </Link>
-                        <button className="p-2 bg-white text-accent shadow-sm border border-black/[0.05] rounded-sm">
-                            <LayoutGrid size={18} />
+                        <button className="p-2 bg-white text-accent rounded-sm shadow-sm border border-black/[0.08]">
+                            <LayoutGrid size={16} />
                         </button>
                     </div>
                     <Link href="/dashboard/tasks/new">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white rounded-sm text-sm font-black hover:bg-accent hover:shadow-none shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] transition-all">
-                            <Plus size={18} />
-                            Tugas Baru
+                        <button className="flex items-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white rounded-sm text-[11px] font-black hover:bg-black transition-all shadow-sm active:scale-95">
+                            <Plus size={16} />
+                            TUGAS BARU
                         </button>
                     </Link>
                 </div>
@@ -139,15 +140,12 @@ export default function KanbanPage() {
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
                     {columns.map((column) => (
-                        <div key={column.id} className="bg-[#FAFAFA]/50 border border-black/[0.04] rounded-sm p-4 flex flex-col min-h-[500px]">
-                            <div className="flex items-center justify-between mb-6 px-1">
-                                <div className="flex items-center gap-2">
-                                    <h3 className="font-black text-[11px] uppercase tracking-widest text-[#0A0A0A]">{column.title}</h3>
-                                    <span className="text-[10px] bg-black text-white px-1.5 py-0.5 rounded-full font-black">{column.tasks.length}</span>
+                        <div key={column.id} className="bg-slate-50/30 border border-black/[0.03] rounded-sm p-6 flex flex-col min-h-[600px] transition-all">
+                            <div className="flex items-center justify-between mb-8 px-1">
+                                <div className="flex items-center gap-3">
+                                    <h3 className="font-black text-[10px] uppercase tracking-[0.2em] text-[#0A0A0A]">{column.title}</h3>
+                                    <span className="text-[9px] font-black text-[#9CA3AF] opacity-50">{column.tasks.length}</span>
                                 </div>
-                                <button className="text-[#9CA3AF] hover:text-[#0A0A0A]">
-                                    <MoreHorizontal size={14} />
-                                </button>
                             </div>
 
                             <Droppable droppableId={column.id}>
@@ -159,29 +157,34 @@ export default function KanbanPage() {
                                     >
                                         {column.tasks.map((task, index) => (
                                             <Draggable key={task.id.toString()} draggableId={task.id.toString()} index={index}>
-                                                {(provided) => (
+                                                {(provided, snapshot) => (
                                                     <div
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="bg-white border border-black/[0.08] p-4 rounded-sm shadow-sm hover:border-accent hover:shadow-[4px_4px_0_0_rgba(168,85,247,0.05)] transition-all cursor-grab active:cursor-grabbing group"
+                                                        className={`bg-white border border-black/[0.04] p-6 rounded-sm transition-all group ${snapshot.isDragging ? 'shadow-xl border-[#A855F7]/30 scale-105 z-50' : 'shadow-sm hover:shadow-md hover:border-[#A855F7]/20'} cursor-grab active:cursor-grabbing`}
                                                     >
-                                                        <div className="flex justify-between items-start mb-3">
-                                                            <Badge variant="outline" className={`text-[8px] font-black uppercase px-2 py-0 h-5 rounded-sm border-2 ${task.priority === 'Critical' ? 'border-red-500 text-red-600 bg-red-50' :
-                                                                task.priority === 'High' ? 'border-orange-500 text-orange-600 bg-orange-50' :
-                                                                    'border-blue-500 text-blue-600 bg-blue-50'
+                                                        <div className="flex justify-between items-start mb-5">
+                                                            <div className={`px-2.5 py-0.5 text-[8px] font-black uppercase rounded-full border ${task.priority === 'Critical' ? 'border-red-100/50 text-red-500/70 bg-red-50/30' :
+                                                                task.priority === 'High' ? 'border-orange-100/50 text-orange-500/70 bg-orange-50/30' :
+                                                                    'border-blue-100/50 text-blue-500/70 bg-blue-50/30'
                                                                 }`}>
                                                                 {task.priority}
-                                                            </Badge>
-                                                            <button className="text-[#9CA3AF] opacity-0 group-hover:opacity-100 transition-opacity">
+                                                            </div>
+                                                            <button className="text-[#E5E7EB] opacity-0 group-hover:opacity-100 hover:text-[#9CA3AF] transition-all">
                                                                 <MoreHorizontal size={14} />
                                                             </button>
                                                         </div>
-                                                        <h4 className="text-sm font-bold text-[#0A0A0A] mb-4 group-hover:text-accent transition-colors leading-tight">{task.title}</h4>
+                                                        <h4 className="text-sm font-black text-[#1F2937] mb-6 transition-colors leading-snug">{task.title}</h4>
 
-                                                        <div className="flex items-center justify-between pt-4 border-t border-black/[0.03]">
-                                                            <span className="text-[9px] font-black uppercase text-[#9CA3AF] tracking-tight">{task.project}</span>
-                                                            <div className="flex items-center gap-1 text-[9px] font-bold text-[#6B7280]">
+                                                        <div className="flex items-center justify-between pt-5 border-t border-black/[0.02]">
+                                                            <div className="flex items-center gap-1.5">
+                                                                <div className="w-5 h-5 rounded-sm bg-slate-50 flex items-center justify-center border border-black/[0.02]">
+                                                                    <Briefcase size={10} className="text-[#9CA3AF]" />
+                                                                </div>
+                                                                <span className="text-[9px] font-black uppercase text-[#9CA3AF] tracking-tight">{task.project}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-1.5 text-[9px] font-bold text-[#9CA3AF]">
                                                                 <Clock size={10} />
                                                                 {task.date}
                                                             </div>

@@ -47,16 +47,16 @@ export default function ProjectsPage() {
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div className="space-y-1">
+            <div className="flex items-center justify-between gap-8 pb-8">
+                <div>
                     <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Proyek</h2>
-                    <p className="text-[#6B7280] font-medium mt-1">Kelola visi besar dan proyek jangka panjang Anda.</p>
+                    <p className="text-[#9CA3AF] text-sm font-medium mt-1">Kelola visi besar Anda.</p>
                 </div>
 
                 <Link href="/dashboard/projects/new">
-                    <button className="flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white rounded-sm text-sm font-black hover:bg-accent transition-all shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] active:scale-95">
-                        <Plus size={18} />
-                        Proyek Baru
+                    <button className="flex items-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white rounded-sm text-[11px] font-black hover:bg-black transition-all shadow-sm active:scale-95">
+                        <Plus size={16} />
+                        PROYEK BARU
                     </button>
                 </Link>
             </div>
@@ -66,20 +66,20 @@ export default function ProjectsPage() {
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className="bg-white border border-black/[0.08] p-10 rounded-sm shadow-sm group hover:border-accent hover:shadow-md transition-all flex flex-col justify-between min-h-[340px]"
+                        className="bg-white border border-black/[0.04] p-10 rounded-sm shadow-sm group hover:border-accent/20 hover:shadow-md transition-all flex flex-col justify-between min-h-[340px]"
                     >
-                        <div className="space-y-8">
+                        <div className="space-y-6">
                             <div className="flex justify-between items-start">
-                                <div className="w-14 h-14 rounded-sm bg-[#0A0A0A] border border-black flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-                                    <Briefcase size={24} />
+                                <div className="w-10 h-10 rounded-sm bg-[#FAFAFA] border border-black/[0.04] flex items-center justify-center text-[#9CA3AF] group-hover:text-accent transition-colors">
+                                    <Briefcase size={20} />
                                 </div>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                        <button className="p-3 bg-white border border-black/[0.1] rounded-sm text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all shadow-sm">
-                                            <MoreHorizontal size={20} />
+                                        <button className="p-2 bg-white border border-black/[0.08] rounded-sm text-[#0A0A0A] hover:bg-[#FAFAFA] transition-all">
+                                            <MoreHorizontal size={18} />
                                         </button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" className="rounded-sm border border-black/[0.08] font-sans font-bold shadow-lg">
+                                    <DropdownMenuContent align="end" className="rounded-sm border border-black/[0.04] font-sans font-bold shadow-lg">
                                         <DropdownMenuItem asChild>
                                             <Link href={`/dashboard/projects/edit/${project.id}`} className="cursor-pointer">
                                                 <Edit size={14} className="mr-2" /> Ubah
@@ -95,25 +95,19 @@ export default function ProjectsPage() {
                                 </DropdownMenu>
                             </div>
 
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-3">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-accent">{project.category}</span>
-                                    <div className="flex items-center gap-1 text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-sm border border-emerald-500/20 text-[9px] font-black">
-                                        <TrendingUp size={10} />
-                                        Lancar
-                                    </div>
-                                </div>
-                                <h3 className="text-2xl font-black text-[#0A0A0A] tracking-tighter group-hover:text-accent transition-colors">{project.title}</h3>
-                                <p className="text-sm font-medium text-[#6B7280] leading-relaxed line-clamp-2">{project.description}</p>
+                            <div>
+                                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-accent block mb-2">{project.category}</span>
+                                <h3 className="text-xl font-black text-[#0A0A0A] tracking-tighter group-hover:text-accent transition-colors mb-1">{project.title}</h3>
+                                <p className="text-xs font-bold text-[#9CA3AF] line-clamp-2">{project.description}</p>
                             </div>
                         </div>
 
-                        <div className="mt-10 space-y-4">
+                        <div className="mt-8 space-y-3">
                             <div className="flex justify-between items-end">
-                                <span className="text-[10px] font-black text-[#0A0A0A] uppercase tracking-widest">{project.tasks} Tugas</span>
-                                <span className="text-xs font-black">{project.progress}%</span>
+                                <span className="text-[9px] font-black text-[#9CA3AF] uppercase tracking-widest">{project.tasks} Tugas</span>
+                                <span className="text-[10px] font-black">{project.progress}%</span>
                             </div>
-                            <div className="h-3 bg-[#F3F4F6] rounded-full border border-black/[0.05] overflow-hidden p-0.5">
+                            <div className="h-1.5 bg-[#F3F4F6] rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-[#0A0A0A] group-hover:bg-accent rounded-full transition-all duration-1000"
                                     style={{ width: `${project.progress}%` }}

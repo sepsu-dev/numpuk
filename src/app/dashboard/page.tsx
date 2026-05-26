@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { Highlighter } from "@/components/highlighter";
 import {
     BarChart,
     Bar,
@@ -55,28 +56,50 @@ export default function DashboardPage() {
         <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
 
             {/* Simple Header */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 py-4 border-b border-black/5">
-                <div className="space-y-1">
-                    <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Ringkasan Hari Ini</h2>
-                    <p className="text-[#6B7280] font-medium text-sm">Berfokuslah pada tugas yang paling penting sekarang.</p>
+            <div className="flex items-center justify-between gap-8 pb-8">
+                <div>
+                    <h2 className="text-3xl font-black text-[#0A0A0A] tracking-tighter">Ringkasan</h2>
+                    <p className="text-[#9CA3AF] text-sm font-medium mt-1">Status terbaru aktivitas Anda hari ini.</p>
                 </div>
 
-                <div className="flex items-center gap-4">
-                    <Link href="/dashboard/tasks/new">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white rounded-sm text-xs font-black hover:bg-accent transition-all shadow-[4px_4px_0_0_rgba(168,85,247,0.3)] active:scale-95">
-                            <Plus size={16} />
-                            TUGAS BARU
-                        </button>
-                    </Link>
-                </div>
+                <Link href="/dashboard/tasks/new">
+                    <button className="flex items-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white rounded-sm text-[11px] font-black hover:bg-black transition-all shadow-sm active:scale-95">
+                        <Plus size={16} />
+                        TUGAS BARU
+                    </button>
+                </Link>
             </div>
 
-            {/* Top Metrics - Super Clean */}
+            {/* Top Metrics - Landing Page Style */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <MiniStat label="Selesai" value="128" color="text-emerald-600" />
-                <MiniStat label="Proses" value="15" color="text-blue-600" />
-                <MiniStat label="Antrean" value="24" color="text-orange-600" />
-                <MiniStat label="Proyek" value="4" color="text-accent" />
+                <MiniStat
+                    label="Selesai"
+                    value="128"
+                    icon={<CheckCircle2 size={16} />}
+                    color="text-emerald-600"
+                    bgColor="bg-emerald-50"
+                />
+                <MiniStat
+                    label="Proses"
+                    value="15"
+                    icon={<PlayCircle size={16} />}
+                    color="text-primary"
+                    bgColor="bg-primary/10"
+                />
+                <MiniStat
+                    label="Antrean"
+                    value="24"
+                    icon={<CircleDashed size={16} />}
+                    color="text-blue-600"
+                    bgColor="bg-blue-50"
+                />
+                <MiniStat
+                    label="Proyek"
+                    value="4"
+                    icon={<Briefcase size={16} />}
+                    color="text-accent"
+                    bgColor="bg-accent/10"
+                />
             </div>
 
             {/* Main Content Grid */}
@@ -85,25 +108,46 @@ export default function DashboardPage() {
                 <div className="xl:col-span-8 space-y-8">
 
                     {/* Activity Chart */}
-                    <div className="bg-white border border-black/[0.08] p-8 rounded-sm shadow-sm hover:shadow-md transition-all">
-                        <div className="flex items-center justify-between mb-8">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-[#0A0A0A]">Produktivitas Mingguan</h3>
-                            <div className="text-emerald-500 font-bold text-[10px] flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-sm">
-                                <TrendingUp size={12} /> +12%
+                    <div className="bg-white border border-black/[0.04] p-10 rounded-sm shadow-sm hover:shadow-md hover:border-accent/20 transition-all">
+                        <div className="flex items-center justify-between mb-10">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2.5 bg-slate-50 border border-black/[0.04] rounded-sm">
+                                    <TrendingUp size={16} className="text-[#0A0A0A]" />
+                                </div>
+                                <div>
+                                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0A]">Efisiensi Mingguan</h3>
+                                    <p className="text-[10px] text-[#9CA3AF] font-bold">Volume tugas selesai</p>
+                                </div>
+                            </div>
+                            <div className="text-emerald-500 font-black text-[10px] flex items-center gap-1.5 px-3 py-1 bg-emerald-50 rounded-full border border-emerald-100">
+                                +12%
                             </div>
                         </div>
-                        <div className="h-[240px] w-full min-h-0 min-w-0">
+                        <div className="h-[300px] w-full relative">
                             {isMounted && (
-                                <ResponsiveContainer width="100%" height="100%" minHeight={0} minWidth={0}>
-                                    <BarChart data={taskData}>
-                                        <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#9CA3AF', fontWeight: 'bold', fontSize: 10 }} dy={10} />
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} debounce={100}>
+                                    <BarChart data={taskData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
+                                        <XAxis
+                                            dataKey="day"
+                                            axisLine={false}
+                                            tickLine={false}
+                                            tick={{ fill: '#9CA3AF', fontWeight: '900', fontSize: 10 }}
+                                            dy={15}
+                                        />
                                         <Tooltip
                                             cursor={{ fill: 'rgba(168,85,247,0.05)' }}
-                                            contentStyle={{ border: '1px solid rgba(0,0,0,0.08)', borderRadius: '4px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', fontSize: '10px', fontWeight: '900' }}
+                                            contentStyle={{
+                                                border: 'none',
+                                                borderRadius: '8px',
+                                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                                fontSize: '11px',
+                                                fontWeight: '900',
+                                                padding: '12px'
+                                            }}
                                         />
-                                        <Bar dataKey="tasks" barSize={32} radius={[4, 4, 0, 0]}>
+                                        <Bar dataKey="tasks" barSize={38} radius={[4, 4, 0, 0]}>
                                             {taskData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={index === 4 ? '#A855F7' : '#0A0A0A'} />
+                                                <Cell key={`cell-${index}`} fill={index === 3 || index === 4 ? 'var(--primary)' : '#E5E7EB'} />
                                             ))}
                                         </Bar>
                                     </BarChart>
@@ -114,14 +158,16 @@ export default function DashboardPage() {
 
                     {/* Task List - Simplified */}
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-[#0A0A0A]">Prioritas Utama</h3>
-                            <Link href="/dashboard/tasks" className="text-[10px] font-black text-accent hover:underline">LIHAT SEMUA</Link>
+                        <div className="flex items-center justify-between px-2">
+                            <div className="flex items-center gap-3">
+                                <CheckCircle2 size={14} className="text-accent" />
+                                <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#0A0A0A]">Prioritas Utama</h3>
+                            </div>
                         </div>
                         <div className="grid grid-cols-1 gap-3">
                             <SimpleTaskCard title="Audit Sistem Numpux" project="Sistem" priority="Mendesak" />
-                            <SimpleTaskCard title="Desain Aplikasi Mobile" project="Desain" priority="Tinggi" />
-                            <SimpleTaskCard title="Update Database Server" project="Sistem" priority="Tinggi" />
+                            <SimpleTaskCard title="Desain Aplikasi Mobile" project="Desain" />
+                            <SimpleTaskCard title="Update Database Server" project="Sistem" />
                         </div>
                     </div>
                 </div>
@@ -130,43 +176,47 @@ export default function DashboardPage() {
                 <div className="xl:col-span-4 space-y-8">
 
                     {/* Project Dist - Smaller */}
-                    <div className="bg-white border border-black/[0.08] p-8 rounded-sm shadow-sm hover:shadow-md transition-all">
-                        <h3 className="text-xs font-black uppercase tracking-widest mb-6">Fokus Proyek</h3>
-                        <div className="h-[140px] w-full mb-6 min-h-0 min-w-0">
+                    <div className="bg-white border border-black/[0.04] p-8 rounded-sm shadow-sm hover:shadow-md transition-all flex flex-col">
+                        <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#0A0A0A] mb-8">Fokus Proyek</h3>
+
+                        <div className="h-[160px] w-full relative mb-8">
                             {isMounted && (
-                                <ResponsiveContainer width="100%" height="100%" minHeight={0} minWidth={0}>
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} debounce={100}>
                                     <PieChart>
                                         <Pie
                                             data={projectDistribution}
-                                            innerRadius={40}
-                                            outerRadius={55}
-                                            paddingAngle={5}
+                                            innerRadius={50}
+                                            outerRadius={65}
+                                            paddingAngle={4}
                                             dataKey="value"
+                                            stroke="none"
                                         >
                                             {projectDistribution.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={entry.color} stroke="#fff" strokeWidth={2} />
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
                                             ))}
                                         </Pie>
-                                        <Tooltip />
                                     </PieChart>
                                 </ResponsiveContainer>
                             )}
                         </div>
-                        <div className="grid grid-cols-2 gap-y-3 gap-x-4">
-                            {projectDistribution.map((item) => (
-                                <div key={item.name} className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                                    <span className="text-[10px] font-black uppercase text-[#6B7280]">{item.name}</span>
+
+                        <div className="space-y-2">
+                            {projectDistribution.slice(0, 3).map((item) => (
+                                <div key={item.name} className="flex items-center justify-between text-[10px]">
+                                    <span className="font-bold text-[#9CA3AF] uppercase tracking-wider">{item.name}</span>
+                                    <span className="font-black text-[#0A0A0A]">{item.value}%</span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Dedlines - High Impact but Simple */}
-                    <div className="bg-[#0A0A0A] text-white p-8 rounded-sm shadow-[4px_4px_0_0_rgba(168,85,247,0.3)]">
+                    <div className="bg-white border border-black/[0.04] p-8 rounded-sm shadow-sm hover:shadow-md hover:border-accent/20 transition-all">
                         <div className="flex items-center gap-3 mb-8">
-                            <CalendarDays size={18} className="text-accent" />
-                            <h3 className="text-xs font-black uppercase tracking-widest text-white/90">Penting</h3>
+                            <div className="w-10 h-10 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center">
+                                <CalendarDays size={18} className="text-accent" />
+                            </div>
+                            <h3 className="text-xs font-black uppercase tracking-widest text-[#0A0A0A]">Prioritas Penting</h3>
                         </div>
                         <div className="space-y-6">
                             <SimpleDeadline title="Pitch Deck Final" date="Besok, 09:00" />
@@ -175,14 +225,18 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Progress Bar - Minimalist */}
-                    <div className="bg-white border border-black/[0.08] p-8 rounded-sm shadow-sm">
+                    <div className="bg-white border border-black/[0.04] p-8 rounded-sm shadow-sm hover:shadow-md hover:border-accent/20 transition-all">
                         <div className="flex justify-between items-end mb-4">
-                            <span className="text-xs font-black uppercase">Level 12</span>
-                            <span className="text-[10px] font-bold text-[#6B7280]">XP: 8,420</span>
+                            <div className="space-y-1">
+                                <span className="text-[9px] font-black uppercase tracking-widest text-[#9CA3AF]">Level 12</span>
+                                <p className="text-sm font-black text-[#0A0A0A]">Master Produktivitas</p>
+                            </div>
+                            <span className="text-[10px] font-bold text-accent bg-accent/5 px-2 py-0.5 rounded-sm">72%</span>
                         </div>
-                        <div className="h-4 bg-[#FAFAFA] border border-black/[0.1] rounded-full p-0.5 overflow-hidden">
-                            <div className="h-full bg-accent rounded-full w-[72%] transition-all" />
+                        <div className="h-2 bg-[#F3F4F6] rounded-full overflow-hidden">
+                            <div className="h-full bg-accent rounded-full w-[72%] transition-all duration-1000" />
                         </div>
+                        <p className="text-[9px] font-bold text-[#9CA3AF] mt-4 uppercase tracking-tighter">Butuh 1,240 XP lagi untuk naik level</p>
                     </div>
 
                 </div>
@@ -191,38 +245,46 @@ export default function DashboardPage() {
     );
 }
 
-function MiniStat({ label, value, color }: { label: string, value: string, color: string }) {
+function MiniStat({ label, value, icon, color, bgColor }: { label: string, value: string, icon: React.ReactNode, color: string, bgColor: string }) {
     return (
-        <div className="bg-white border border-black/[0.08] p-6 rounded-sm shadow-sm hover:border-accent hover:shadow-[4px_4px_0_0_rgba(168,85,247,0.05)] transition-all group">
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#9CA3AF] mb-1 group-hover:text-accent transition-colors">{label}</p>
-            <span className={`text-3xl font-black tracking-tighter ${color}`}>{value}</span>
+        <div className="bg-white border border-black/[0.04] p-7 rounded-sm shadow-sm hover:shadow-md transition-all group flex items-center justify-between">
+            <div className="flex items-center gap-5">
+                <div className={`w-11 h-11 ${bgColor} ${color} flex items-center justify-center rounded-sm transition-all border border-black/[0.02]`}>
+                    {icon}
+                </div>
+                <div>
+                    <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#9CA3AF] mb-0.5">{label}</p>
+                    <span className="text-3xl font-black tracking-tighter text-[#0A0A0A]">{value}</span>
+                </div>
+            </div>
         </div>
     );
 }
 
-function SimpleTaskCard({ title, project, priority }: { title: string, project: string, priority: string }) {
+function SimpleTaskCard({ title, project, priority }: { title: string, project: string, priority?: string }) {
     return (
-        <div className="bg-white border border-black/[0.08] p-5 rounded-sm flex items-center justify-between group hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+        <div className="bg-white border border-black/[0.04] p-5 rounded-sm flex items-center justify-between group hover:shadow-md transition-all cursor-pointer">
             <div className="flex items-center gap-4">
-                <div className="w-6 h-6 border-2 border-black/[0.1] rounded-sm flex items-center justify-center group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all">
-                    <CheckCircle2 size={12} />
+                <div className="w-9 h-9 border border-black/[0.03] rounded-sm flex items-center justify-center bg-[#FAFAFA] text-[#E5E7EB] group-hover:text-accent transition-colors">
+                    <CheckCircle2 size={16} />
                 </div>
                 <div>
-                    <h4 className="text-sm font-bold text-[#0A0A0A] leading-none mb-1.5 group-hover:text-accent transition-colors">{title}</h4>
-                    <span className="text-[9px] font-black uppercase tracking-widest text-[#9CA3AF]">{project}</span>
+                    <h4 className="text-[14px] font-black text-[#0A0A0A] tracking-tight transition-colors group-hover:text-accent">{title}</h4>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-[#9CA3AF]">{project}</span>
                 </div>
             </div>
-            <span className={`text-[8px] font-black uppercase px-2 py-0.5 border-2 rounded-sm ${priority === 'Mendesak' ? 'border-red-500 text-red-600 bg-red-50' : 'border-blue-500 text-blue-600 bg-blue-50'
-                }`}>{priority}</span>
+            {priority && (
+                <span className="text-[8px] font-black uppercase px-2 py-1 bg-red-50 text-red-500 rounded-sm border border-red-100">{priority}</span>
+            )}
         </div>
     );
 }
 
 function SimpleDeadline({ title, date }: { title: string, date: string }) {
     return (
-        <div className="space-y-1 group cursor-pointer">
-            <p className="text-sm font-black tracking-tight group-hover:underline">{title}</p>
-            <p className="text-[9px] font-bold text-white/60 uppercase">{date}</p>
+        <div className="space-y-1 group cursor-pointer border-l-2 border-slate-100 pl-4 hover:border-accent transition-colors">
+            <p className="text-sm font-black tracking-tight text-[#0A0A0A] group-hover:text-accent transition-colors">{title}</p>
+            <p className="text-[9px] font-bold text-[#9CA3AF] uppercase">{date}</p>
         </div>
     );
 }
